@@ -1,6 +1,6 @@
 ---
 // src/components/SEO.astro
-interface Props {
+export interface Props {
   title?: string;
   description?: string;
   keywords?: string;
@@ -19,13 +19,13 @@ interface Props {
 }
 
 const {
-  title = "Default Title",
-  description = "Default description",
-  keywords = "",
-  image = "/default-image.jpg",
-  url = Astro.url.href,
-  pathname = Astro.url.pathname,
-  type = "website",
+  title,
+  description,
+  keywords,
+  image,
+  url,
+  pathname,
+  type = 'website',
   publishedTime,
   modifiedTime,
   noindex = false,
@@ -35,90 +35,6 @@ const {
   faqData,
   reviewData
 } = Astro.props;
----
-
-<!-- SEO Meta Tags -->
-<title>{title}</title>
-<meta name="description" content={description} />
-{keywords && <meta name="keywords" content={keywords} />}
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<link rel="canonical" href={url} />
-
-<!-- Open Graph / Facebook -->
-<meta property="og:type" content={type} />
-<meta property="og:url" content={url} />
-<meta property="og:title" content={title} />
-<meta property="og:description" content={description} />
-<meta property="og:image" content={image} />
-
-<!-- Twitter -->
-<meta property="twitter:card" content="summary_large_image" />
-<meta property="twitter:url" content={url} />
-<meta property="twitter:title" content={title} />
-<meta property="twitter:description" content={description} />
-<meta property="twitter:image" content={image} />
-
-<!-- Additional Meta Tags -->
-{publishedTime && <meta property="article:published_time" content={publishedTime} />}
-{modifiedTime && <meta property="article:modified_time" content={modifiedTime} />}
-{noindex && <meta name="robots" content="noindex" />}
-{nofollow && <meta name="robots" content="nofollow" />}
-{serviceArea && <meta name="geo.region" content={serviceArea} />}
-
-<!-- JSON-LD Structured Data -->
-{breadcrumbs && (
-  <script type="application/ld+json">
-    {JSON.stringify({
-      "@context": "https://schema.org",
-      "@type": "BreadcrumbList",
-      "itemListElement": breadcrumbs.map((item, index) => ({
-        "@type": "ListItem",
-        "position": index + 1,
-        "name": item.name,
-        "item": item.url
-      }))
-    })}
-  </script>
-)}
-
-{faqData && (
-  <script type="application/ld+json">
-    {JSON.stringify({
-      "@context": "https://schema.org",
-      "@type": "FAQPage",
-      "mainEntity": faqData.map(faq => ({
-        "@type": "Question",
-        "name": faq.question,
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": faq.answer
-        }
-      }))
-    })}
-  </script>
-)}
-
-{reviewData && (
-  <script type="application/ld+json">
-    {JSON.stringify({
-      "@context": "https://schema.org",
-      "@type": "Organization",
-      "review": reviewData.map(review => ({
-        "@type": "Review",
-        "author": {
-          "@type": "Person",
-          "name": review.author
-        },
-        "reviewRating": {
-          "@type": "Rating",
-          "ratingValue": review.rating
-        },
-        "reviewBody": review.text,
-        "datePublished": review.date
-      }))
-    })}
-  </script>
-)}
 
 const siteName = "Chiltern Computers";
 const baseUrl = "https://www.chilterncomputers.net";
