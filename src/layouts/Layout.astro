@@ -1,0 +1,39 @@
+---
+// src/layouts/Layout.astro
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import SEO from '../components/SEO.astro';
+
+export interface Props {
+  title?: string;
+  description?: string;
+  keywords?: string;
+  image?: string;
+}
+
+const { title, description, keywords, image } = Astro.props;
+const { pathname } = Astro.url;
+---
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <SEO 
+      title={title}
+      description={description}
+      keywords={keywords}
+      image={image}
+      url={Astro.url.href}
+      pathname={pathname}
+    />
+  </head>
+  <body class="font-sans text-gray-800 bg-gray-50">
+    <Header pathname={pathname} />
+    <main class="min-h-[70vh]">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

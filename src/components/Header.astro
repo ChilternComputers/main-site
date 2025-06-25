@@ -1,0 +1,328 @@
+---
+// src/components/Header.astro
+const { url } = Astro;
+---
+
+<header id="main-header" class="bg-white/95 backdrop-blur-md shadow-md sticky top-0 z-40 transition-all duration-300" role="banner">
+  <div class="max-w-7xl mx-auto px-4">
+    <div class="flex justify-between items-center py-4 transition-all duration-300" id="header-content">
+      <!-- Logo and Brand -->
+      <a href="/" class="flex items-center gap-3 group relative" aria-label="Chiltern Computers Homepage">
+        <!-- Add a subtle glow effect -->
+        <div class="absolute -inset-2 bg-gradient-to-r from-brand-400/20 to-blue-500/20 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-sm"></div>
+        <img 
+          src="/logo_homepage.webp" 
+          alt="Chiltern Computers Logo" 
+          class="h-10 w-auto transition-all duration-300 group-hover:scale-110 relative z-10"
+          width="40"
+          height="40"
+        />
+        <div class="relative z-10">
+          <h1 class="text-xl font-bold text-brand-600 group-hover:text-brand-700 transition-all duration-300">
+            Chiltern Computers
+          </h1>
+          <p class="text-sm text-gray-600 hidden sm:block group-hover:text-gray-700 transition-colors duration-300">
+            Professional IT Support & Repairs
+          </p>
+        </div>
+      </a>
+
+      <!-- Mobile menu button with animation -->
+      <button
+        id="mobileMenuToggle"
+        class="md:hidden flex flex-col gap-1 p-2 relative overflow-hidden group"
+        aria-label="Toggle mobile menu"
+        aria-expanded="false"
+      >
+        <div class="absolute inset-0 bg-brand-100 rounded-md scale-0 group-hover:scale-100 transition-transform duration-200"></div>
+        <span class="w-6 h-0.5 bg-gray-600 transition-all duration-300 relative z-10 group-hover:bg-brand-600"></span>
+        <span class="w-6 h-0.5 bg-gray-600 transition-all duration-300 relative z-10 group-hover:bg-brand-600"></span>
+        <span class="w-6 h-0.5 bg-gray-600 transition-all duration-300 relative z-10 group-hover:bg-brand-600"></span>
+      </button>
+
+      <!-- Desktop Navigation with enhanced hover effects -->
+      <nav class="hidden md:flex space-x-1" role="navigation" aria-label="Main navigation">
+        <a 
+          href="/" 
+          class="nav-link px-4 py-2 rounded-md hover:bg-brand-50 hover:text-brand-600 transition-all duration-300 font-medium relative overflow-hidden group"
+          aria-current={url.pathname === '/' ? 'page' : undefined}
+        >
+          <span class="relative z-10">Home</span>
+          <div class="absolute inset-0 bg-gradient-to-r from-brand-500/10 to-blue-500/10 translate-x-full group-hover:translate-x-0 transition-transform duration-300"></div>
+        </a>
+
+        <!-- Enhanced Services Dropdown -->
+        <div class="relative">
+          <button
+            id="servicesToggle"
+            class="nav-link px-4 py-2 rounded-md hover:bg-brand-50 hover:text-brand-600 transition-all duration-300 font-medium flex items-center gap-1 relative overflow-hidden group"
+            type="button"
+            aria-expanded="false"
+            aria-haspopup="true"
+          >
+            <span class="relative z-10">Services</span>
+            <svg class="w-4 h-4 transition-all duration-300 relative z-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+            </svg>
+            <div class="absolute inset-0 bg-gradient-to-r from-brand-500/10 to-blue-500/10 translate-x-full group-hover:translate-x-0 transition-transform duration-300"></div>
+          </button>
+
+          <div
+            id="servicesDropdown"
+            class="absolute left-0 mt-2 w-56 bg-white/95 backdrop-blur-md border border-gray-200/60 rounded-lg shadow-xl z-50 hidden opacity-0 transform scale-95 transition-all duration-300"
+            role="menu"
+          >
+            <a
+              href="/services/custom-pcs"
+              class="block px-4 py-3 hover:bg-gradient-to-r hover:from-brand-50 hover:to-blue-50 text-gray-700 hover:text-brand-600 transition-all duration-300 first:rounded-t-lg relative group"
+              role="menuitem"
+            >
+              <div class="absolute left-0 top-0 h-full w-1 bg-gradient-to-b from-brand-500 to-blue-500 scale-y-0 group-hover:scale-y-100 transition-transform duration-300 origin-top"></div>
+              <strong class="relative z-10">Custom PCs</strong>
+              <span class="block text-sm text-gray-500 group-hover:text-gray-600 transition-colors duration-300 relative z-10">High-performance builds</span>
+            </a>
+            <a
+              href="/services/repairs"
+              class="block px-4 py-3 hover:bg-gradient-to-r hover:from-brand-50 hover:to-blue-50 text-gray-700 hover:text-brand-600 transition-all duration-300 relative group"
+              role="menuitem"
+            >
+              <div class="absolute left-0 top-0 h-full w-1 bg-gradient-to-b from-brand-500 to-blue-500 scale-y-0 group-hover:scale-y-100 transition-transform duration-300 origin-top"></div>
+              <strong class="relative z-10">Computer Repairs</strong>
+              <span class="block text-sm text-gray-500 group-hover:text-gray-600 transition-colors duration-300 relative z-10">Fast diagnosis & fixes</span>
+            </a>
+            <a
+              href="/services/refurbished"
+              class="block px-4 py-3 hover:bg-gradient-to-r hover:from-brand-50 hover:to-blue-50 text-gray-700 hover:text-brand-600 transition-all duration-300 last:rounded-b-lg relative group"
+              role="menuitem"
+            >
+              <div class="absolute left-0 top-0 h-full w-1 bg-gradient-to-b from-brand-500 to-blue-500 scale-y-0 group-hover:scale-y-100 transition-transform duration-300 origin-top"></div>
+              <strong class="relative z-10">Refurbished PCs</strong>
+              <span class="block text-sm text-gray-500 group-hover:text-gray-600 transition-colors duration-300 relative z-10">Quality pre-owned systems</span>
+            </a>
+          </div>
+        </div>
+
+        <a 
+          href="/about" 
+          class="nav-link px-4 py-2 rounded-md hover:bg-brand-50 hover:text-brand-600 transition-all duration-300 font-medium relative overflow-hidden group"
+          aria-current={url.pathname === '/about' ? 'page' : undefined}
+        >
+          <span class="relative z-10">About</span>
+          <div class="absolute inset-0 bg-gradient-to-r from-brand-500/10 to-blue-500/10 translate-x-full group-hover:translate-x-0 transition-transform duration-300"></div>
+        </a>
+        <a 
+          href="/contact" 
+          class="nav-link px-4 py-2 rounded-md hover:bg-brand-50 hover:text-brand-600 transition-all duration-300 font-medium relative overflow-hidden group border-2 border-transparent hover:border-brand-200"
+          aria-current={url.pathname === '/contact' ? 'page' : undefined}
+        >
+          <span class="relative z-10">Contact</span>
+          <div class="absolute inset-0 bg-gradient-to-r from-brand-500/10 to-blue-500/10 translate-x-full group-hover:translate-x-0 transition-transform duration-300"></div>
+        </a>
+      </nav>
+    </div>
+  </div>
+  
+  <!-- Animated progress bar that shows scroll progress -->
+  <div id="scroll-progress" class="absolute bottom-0 left-0 h-0.5 bg-gradient-to-r from-brand-500 to-blue-500 transition-all duration-100 ease-out" style="width: 0%"></div>
+</header>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const header = document.getElementById('main-header');
+    const headerContent = document.getElementById('header-content');
+    const scrollProgress = document.getElementById('scroll-progress');
+    const servicesToggle = document.getElementById('servicesToggle');
+    const servicesDropdown = document.getElementById('servicesDropdown');
+    const chevronIcon = servicesToggle?.querySelector('svg');
+    
+    let isOpen = false;
+    let lastScrollY = 0;
+
+    // Scroll effects
+    function updateHeaderOnScroll() {
+      const scrollY = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const scrollPercent = (scrollY / docHeight) * 100;
+
+      // Update scroll progress bar
+      if (scrollProgress) {
+        scrollProgress.style.width = `${Math.min(scrollPercent, 100)}%`;
+      }
+
+      if (scrollY > 20) {
+        // Scrolled down - add effects
+        header?.classList.add('bg-white/98', 'shadow-lg');
+        header?.classList.remove('bg-white/95', 'shadow-md');
+        headerContent?.classList.add('py-3');
+        headerContent?.classList.remove('py-4');
+        
+        // Add subtle color shift to brand elements
+        const brandElements = document.querySelectorAll('.text-brand-600');
+        brandElements.forEach(el => {
+          el.classList.add('text-brand-700');
+          el.classList.remove('text-brand-600');
+        });
+      } else {
+        // At top - reset
+        header?.classList.add('bg-white/95', 'shadow-md');
+        header?.classList.remove('bg-white/98', 'shadow-lg');
+        headerContent?.classList.add('py-4');
+        headerContent?.classList.remove('py-3');
+        
+        // Reset brand colors
+        const brandElements = document.querySelectorAll('.text-brand-700');
+        brandElements.forEach(el => {
+          el.classList.add('text-brand-600');
+          el.classList.remove('text-brand-700');
+        });
+      }
+
+      // Hide/show header on scroll direction (optional - comment out if you don't want this)
+      if (scrollY > 100) {
+        if (scrollY > lastScrollY && scrollY > 200) {
+          // Scrolling down - hide header
+          header?.classList.add('-translate-y-full');
+        } else {
+          // Scrolling up - show header
+          header?.classList.remove('-translate-y-full');
+        }
+      }
+      
+      lastScrollY = scrollY;
+    }
+
+    // Throttled scroll listener for better performance
+    let ticking = false;
+    function onScroll() {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          updateHeaderOnScroll();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+
+    // Enhanced dropdown functionality
+    function toggleDropdown() {
+      isOpen = !isOpen;
+      
+      if (isOpen) {
+        // Show dropdown with stagger animation
+        servicesDropdown?.classList.remove('hidden');
+        setTimeout(() => {
+          servicesDropdown?.classList.remove('opacity-0', 'scale-95');
+          servicesDropdown?.classList.add('opacity-100', 'scale-100');
+        }, 10);
+        
+        // Rotate chevron with bounce
+        chevronIcon?.classList.add('rotate-180', 'scale-110');
+        setTimeout(() => {
+          chevronIcon?.classList.remove('scale-110');
+        }, 200);
+        
+        servicesToggle?.setAttribute('aria-expanded', 'true');
+      } else {
+        // Hide dropdown
+        servicesDropdown?.classList.remove('opacity-100', 'scale-100');
+        servicesDropdown?.classList.add('opacity-0', 'scale-95');
+        setTimeout(() => {
+          servicesDropdown?.classList.add('hidden');
+        }, 300);
+        
+        // Reset chevron
+        chevronIcon?.classList.remove('rotate-180');
+        servicesToggle?.setAttribute('aria-expanded', 'false');
+      }
+    }
+
+    // Dropdown event listeners
+    servicesToggle?.addEventListener('click', function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      toggleDropdown();
+    });
+
+    // Enhanced outside click detection
+    document.addEventListener('click', function(e) {
+      if (isOpen && !servicesToggle?.contains(e.target) && !servicesDropdown?.contains(e.target)) {
+        toggleDropdown();
+      }
+    });
+
+    // Keyboard navigation
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && isOpen) {
+        toggleDropdown();
+        servicesToggle?.focus();
+      }
+    });
+
+    // Close dropdown when navigating
+    servicesDropdown?.addEventListener('click', function(e) {
+      if (e.target.tagName === 'A') {
+        setTimeout(() => toggleDropdown(), 150);
+      }
+    });
+
+    // Add loading animation to nav links
+    const navLinks = document.querySelectorAll('.nav-link');
+    navLinks.forEach(link => {
+      link.addEventListener('click', function(e) {
+        if (this.href && this.href !== window.location.href) {
+          // Add loading state
+          this.style.opacity = '0.7';
+          this.style.transform = 'scale(0.98)';
+        }
+      });
+    });
+
+    // Initialize header state
+    updateHeaderOnScroll();
+  });
+</script>
+
+<style>
+  /* Add some custom CSS for enhanced animations */
+  #main-header {
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                background-color 0.3s ease,
+                box-shadow 0.3s ease;
+  }
+
+  /* Smooth gradient animation for hover effects */
+  @keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  .nav-link:hover {
+    background-size: 200% 200%;
+    animation: gradientShift 3s ease infinite;
+  }
+
+  /* Pulse effect for the logo on hover */
+  @keyframes logoPulse {
+    0% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.4); }
+    70% { box-shadow: 0 0 0 10px rgba(59, 130, 246, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0); }
+  }
+
+  /* Enhanced mobile menu button animation */
+  #mobileMenuToggle:active {
+    transform: scale(0.95);
+  }
+
+  /* Smooth scroll progress bar */
+  #scroll-progress {
+    background: linear-gradient(90deg, 
+      var(--brand-500, #3b82f6) 0%, 
+      var(--blue-500, #06b6d4) 50%, 
+      var(--brand-600, #2563eb) 100%);
+    background-size: 200% 100%;
+    animation: gradientShift 4s ease infinite;
+  }
+</style>

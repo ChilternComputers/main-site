@@ -1,0 +1,54 @@
+---
+const title = "Computer Repairs and Supply";
+const subtitle = "Expert IT Support in Romford & Havering";
+const description =
+  "With over 20 years of experience, Chiltern Computers provides expert computer repairs, custom-built gaming PCs, and reliable IT support throughout Harold Hill, Romford, and Havering . Fast, affordable, and professional service you can trust.";
+
+const ctaButtons = [
+  {
+    text: "Call Now: 07971 331814",
+    href: "tel:+447971331814",
+    bgColor: "bg-blue-600 hover:bg-blue-700",
+  },
+  {
+    text: "WhatsApp Us",
+    href: "https://wa.me/447971331814",
+    bgColor: "bg-green-500 hover:bg-green-600",
+  },
+  {
+    text: "Join Facebook Group",
+    href: "https://www.facebook.com/groups/217286604958495",
+    bgColor: "bg-blue-500 hover:bg-blue-600",
+  },
+];
+---
+
+<section    
+  class="relative bg-no-repeat py-12 px-4 text-white min-h-[340px] bg-gray-900"   
+  style="background-color: #1f2937; background-image: linear-gradient(to left, rgba(0, 0, 0, 0.6), rgba(0,0,0,0)), url('/mainpcpic.jpg'); background-size: 100%; background-position: center center; background-repeat: no-repeat;"
+>
+  <div class="relative z-10 max-w-6xl mx-auto flex flex-col items-center justify-center text-center gap-6 h-full min-h-[340px]">
+    <div class="w-full">
+      <h1 class="text-3xl md:text-4xl font-bold mb-6 drop-shadow-lg leading-tight">
+        {title}<br />
+        <span class="text-2xl md:text-3xl">{subtitle}</span>
+      </h1>
+      <p class="text-lg max-w-2xl mb-8 drop-shadow-md mx-auto leading-relaxed">
+        {description}
+      </p>
+
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        {ctaButtons.map((btn) => (
+          <a
+            href={btn.href}
+            class={`px-6 py-3 rounded-lg font-semibold transition shadow-lg text-white ${btn.bgColor}`}
+            target={btn.href.startsWith("http") ? "_blank" : "_self"}
+            rel={btn.href.startsWith("http") ? "noopener noreferrer" : undefined}
+          >
+            {btn.text}
+          </a>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>

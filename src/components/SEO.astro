@@ -1,0 +1,579 @@
+---
+// src/components/SEO.astro
+export interface Props {
+  title?: string;
+  description?: string;
+  keywords?: string;
+  image?: string;
+  url?: string;
+  pathname?: string;
+  type?: 'website' | 'article' | 'service';
+  publishedTime?: string;
+  modifiedTime?: string;
+  noindex?: boolean;
+  nofollow?: boolean;
+  serviceArea?: string;
+  breadcrumbs?: Array<{name: string, url: string}>;
+  faqData?: Array<{question: string, answer: string}>;
+  reviewData?: Array<{author: string, rating: number, text: string, date: string}>;
+}
+
+const {
+  title,
+  description,
+  keywords,
+  image,
+  url,
+  pathname,
+  type = 'website',
+  publishedTime,
+  modifiedTime,
+  noindex = false,
+  nofollow = false,
+  serviceArea,
+  breadcrumbs,
+  faqData,
+  reviewData
+} = Astro.props;
+
+const siteName = "Chiltern Computers";
+const baseUrl = "https://www.chilterncomputers.net";
+const fullUrl = url || `${baseUrl}${pathname || ''}`;
+
+// Enhanced service areas within 3-mile radius
+const serviceAreas = [
+  "Harold Hill", "Romford", "Hornchurch", "Upminster", "Dagenham", 
+  "Elm Park", "South Hornchurch", "Rainham", "Wennington", "Aveley",
+  "Collier Row", "Gidea Park", "Emerson Park", "Ardleigh Green",
+  "Rush Green", "Becontree", "Chadwell Heath", "Heath Park"
+];
+
+const primaryServiceArea = serviceArea || "Harold Hill";
+const areaKeywords = serviceAreas.join(", ");
+
+// Dynamic title optimization
+const seoTitle = title ? 
+  `${title} | ${siteName}` : 
+  `${siteName} - Computer Repair & Supply in Harold Hill, Romford & Essex`;
+
+// Enhanced description with CTA
+const seoDescription = description || 
+  `Expert computer repair, laptop servicing, and IT support in ${primaryServiceArea}. Serving Harold Hill, Romford, Hornchurch, Upminster, Dagenham and surrounding Essex areas. Fast, affordable, reliable service with same-day repairs available. Call 01708 347341 for free quote.`;
+
+// More targeted keywords
+const seoKeywords = keywords || 
+  `computer repair ${primaryServiceArea}, laptop repair Romford, PC repair Harold Hill, computer services Hornchurch, IT support Upminster, virus removal Dagenham, computer technician Essex, laptop screen repair, hardware upgrade, data recovery, same day computer repair, emergency PC repair, ${areaKeywords}, Chiltern Computers`;
+
+const seoImage = image ? (image.startsWith('http') ? image : `${baseUrl}${image}`) : `${baseUrl}/logoopengraph.png`;
+
+// Enhanced robots directive with additional parameters
+const robotsContent = `${noindex ? 'noindex' : 'index'}, ${nofollow ? 'nofollow' : 'follow'}, max-snippet:-1, max-image-preview:large, max-video-preview:-1`;
+
+// Business information with precise coordinates
+const businessInfo = {
+  name: "Chiltern Computers",
+  telephone: "+44 1708 347341",
+  mobile: "+44 7971 331814",
+  email: "david@chilterncomputers.net",
+  address: {
+    streetAddress: "38 Hilldene Avenue",
+    addressLocality: "Harold Hill",
+    addressRegion: "Essex", 
+    postalCode: "RM3 8YP",
+    addressCountry: "GB"
+  },
+  coordinates: {
+    latitude: 51.5946,
+    longitude: 0.2329
+  },
+  openingHours: [
+    "Mo-Fr 09:00-17:30",
+    "Sa 09:00-16:00",
+    "Su closed"
+  ],
+  serviceRadius: 4828,
+  socialProfiles: [
+    "https://www.facebook.com/groups/217286604958495"
+  ]
+};
+
+// Enhanced service offerings with more details
+const services = [
+  {
+    name: "Computer Repair",
+    description: "Professional desktop PC and laptop repair services for all makes and models including Windows, Mac, and Linux systems",
+    category: "RepairService",
+    offers: {
+      price: "From £35",
+      priceCurrency: "GBP",
+      availability: "InStock"
+    }
+  },
+  {
+    name: "Laptop Screen Repair",
+    description: "Expert laptop screen replacement and repair services with same-day service available",
+    category: "RepairService",
+    offers: {
+      price: "From £75",
+      priceCurrency: "GBP",
+      availability: "InStock"
+    }
+  },
+  {
+    name: "Virus Removal",
+    description: "Complete virus, malware, and spyware removal services with security optimization",
+    category: "RepairService",
+    offers: {
+      price: "From £45",
+      priceCurrency: "GBP",
+      availability: "InStock"
+    }
+  },
+  {
+    name: "Data Recovery",
+    description: "Professional data recovery from failed hard drives and storage devices with no-fix-no-fee guarantee",
+    category: "RepairService",
+    offers: {
+      price: "From £95",
+      priceCurrency: "GBP",
+      availability: "InStock"
+    }
+  },
+  {
+    name: "Hardware Upgrade",
+    description: "Computer hardware upgrades including RAM, SSD, and component installation with warranty",
+    category: "RepairService",
+    offers: {
+      price: "From £25",
+      priceCurrency: "GBP",
+      availability: "InStock"
+    }
+  },
+  {
+    name: "IT Support",
+    description: "Ongoing IT support and maintenance for home and business users with remote assistance available",
+    category: "ProfessionalService",
+    offers: {
+      price: "From £40/hour",
+      priceCurrency: "GBP",
+      availability: "InStock"
+    }
+  }
+];
+
+// Generate current timestamp for freshness
+const currentTime = new Date().toISOString();
+---
+
+<title>{seoTitle}</title>
+<meta name="description" content={seoDescription} />
+<meta name="keywords" content={seoKeywords} />
+<meta name="author" content="Chiltern Computers" />
+<meta name="robots" content={robotsContent} />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="format-detection" content="telephone=yes" />
+<meta name="geo.region" content="GB-ESS" />
+<meta name="geo.placename" content="Harold Hill, Romford, Essex" />
+<meta name="geo.position" content={`${businessInfo.coordinates.latitude};${businessInfo.coordinates.longitude}`} />
+<meta name="ICBM" content={`${businessInfo.coordinates.latitude}, ${businessInfo.coordinates.longitude}`} />
+<link rel="canonical" href={fullUrl} />
+
+<!-- Enhanced Performance and SEO Meta Tags -->
+<meta name="coverage" content="Worldwide" />
+<meta name="distribution" content="Global" />
+<meta name="target" content="all" />
+<meta name="HandheldFriendly" content="True" />
+<meta name="MobileOptimized" content="320" />
+<meta name="apple-mobile-web-app-title" content="Chiltern Computers" />
+<meta name="application-name" content="Chiltern Computers" />
+<meta name="msapplication-tooltip" content="Computer Repair Services in Harold Hill" />
+<meta name="dc.language" content="en-GB" />
+<meta name="dc.title" content={seoTitle} />
+<meta name="dc.description" content={seoDescription} />
+<meta name="dc.subject" content="Computer Repair Services" />
+
+<!-- Preconnect for performance -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="dns-prefetch" href="https://www.google-analytics.com" />
+
+<!-- Enhanced Open Graph -->
+<meta property="og:type" content={type} />
+<meta property="og:title" content={seoTitle} />
+<meta property="og:description" content={seoDescription} />
+<meta property="og:image" content={seoImage} />
+<meta property="og:image:alt" content={`${siteName} - Computer Repair Services in ${primaryServiceArea}`} />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:url" content={fullUrl} />
+<meta property="og:site_name" content={siteName} />
+<meta property="og:locale" content="en_GB" />
+<meta property="og:country-name" content="United Kingdom" />
+<meta property="og:region" content="Essex" />
+<meta property="og:phone_number" content={businessInfo.telephone} />
+<meta property="og:email" content={businessInfo.email} />
+<meta property="business:contact_data:street_address" content={businessInfo.address.streetAddress} />
+<meta property="business:contact_data:locality" content={businessInfo.address.addressLocality} />
+<meta property="business:contact_data:region" content={businessInfo.address.addressRegion} />
+<meta property="business:contact_data:postal_code" content={businessInfo.address.postalCode} />
+<meta property="business:contact_data:country_name" content="United Kingdom" />
+{publishedTime && <meta property="article:published_time" content={publishedTime} />}
+{modifiedTime && <meta property="article:modified_time" content={modifiedTime} />}
+
+<!-- Enhanced Twitter Cards -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={seoTitle} />
+<meta name="twitter:description" content={seoDescription} />
+<meta name="twitter:image" content={seoImage} />
+<meta name="twitter:image:alt" content={`${siteName} - Computer Repair Services in ${primaryServiceArea}`} />
+<meta name="twitter:creator" content="@chilterncomputers" />
+<meta name="twitter:site" content="@chilterncomputers" />
+
+<!-- Theme and App Meta Tags -->
+<meta name="theme-color" content="#1e40af" />
+<meta name="msapplication-TileColor" content="#1e40af" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+<!-- Enhanced LocalBusiness Structured Data -->
+<script type="application/ld+json">
+{JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "@id": `${baseUrl}#business`,
+  "name": businessInfo.name,
+  "alternateName": ["Chiltern Computer Services", "Chiltern PC Repair"],
+  "image": [seoImage],
+  "logo": {
+    "@type": "ImageObject",
+    "url": seoImage,
+    "width": 300,
+    "height": 300
+  },
+  "url": baseUrl,
+  "telephone": businessInfo.telephone,
+  "additionalProperty": [
+    {
+      "@type": "PropertyValue",
+      "name": "Mobile",
+      "value": businessInfo.mobile
+    },
+    {
+      "@type": "PropertyValue", 
+      "name": "Emergency Service",
+      "value": "Available"
+    },
+    {
+      "@type": "PropertyValue",
+      "name": "Same Day Service",
+      "value": "Available"
+    }
+  ],
+  "email": businessInfo.email,
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": businessInfo.address.streetAddress,
+    "addressLocality": businessInfo.address.addressLocality,
+    "addressRegion": businessInfo.address.addressRegion,
+    "postalCode": businessInfo.address.postalCode,
+    "addressCountry": businessInfo.address.addressCountry
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": businessInfo.coordinates.latitude,
+    "longitude": businessInfo.coordinates.longitude
+  },
+  "description": seoDescription,
+  "slogan": "Fast, Affordable, Reliable Computer Services",
+  "foundingDate": "2007",
+  "founder": {
+    "@type": "Person",
+    "name": "David"
+  },
+  "areaServed": serviceAreas.map(area => ({
+    "@type": "City",
+    "name": area,
+    "containedInPlace": {
+      "@type": "AdministrativeArea",
+      "name": "Essex",
+      "containedInPlace": {
+        "@type": "Country",
+        "name": "United Kingdom"
+      }
+    }
+  })),
+  "serviceArea": {
+    "@type": "GeoCircle",
+    "geoMidpoint": {
+      "@type": "GeoCoordinates",
+      "latitude": businessInfo.coordinates.latitude,
+      "longitude": businessInfo.coordinates.longitude
+    },
+    "geoRadius": businessInfo.serviceRadius
+  },
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+      "opens": "09:00",
+      "closes": "17:30"
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": "Saturday",
+      "opens": "09:00", 
+      "closes": "16:00"
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": "Sunday",
+      "opens": "00:00",
+      "closes": "00:00",
+      "validFrom": "2024-01-01",
+      "validThrough": "2024-12-31"
+    }
+  ],
+  "priceRange": "££",
+  "paymentAccepted": ["Cash", "Credit Card", "Debit Card", "Bank Transfer"],
+  "currenciesAccepted": "GBP",
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Computer Services",
+    "itemListElement": services.map((service, index) => ({
+      "@type": "Offer",
+      "position": index + 1,
+      "itemOffered": {
+        "@type": "Service",
+        "name": service.name,
+        "description": service.description,
+        "category": service.category,
+        "provider": {
+          "@id": `${baseUrl}#business`
+        },
+        "areaServed": serviceAreas.map(area => ({
+          "@type": "City",
+          "name": area
+        }))
+      },
+      "price": service.offers.price,
+      "priceCurrency": service.offers.priceCurrency,
+      "availability": `https://schema.org/${service.offers.availability}`,
+      "validFrom": currentTime
+    }))
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "5.0",
+    "reviewCount": "47",
+    "bestRating": "5",
+    "worstRating": "5"
+  },
+  "review": reviewData?.map(review => ({
+    "@type": "Review",
+    "author": {
+      "@type": "Person",
+      "name": review.author
+    },
+    "reviewRating": {
+      "@type": "Rating",
+      "ratingValue": review.rating,
+      "bestRating": "5"
+    },
+    "reviewBody": review.text,
+    "datePublished": review.date
+  })) || [],
+  "makesOffer": services.map(service => ({
+    "@type": "Offer",
+    "itemOffered": {
+      "@type": "Service",
+      "name": service.name,
+      "description": service.description
+    },
+    "price": service.offers.price,
+    "priceCurrency": service.offers.priceCurrency
+  })),
+  ...(businessInfo.socialProfiles.length > 0 && { "sameAs": businessInfo.socialProfiles }),
+  "contactPoint": [
+    {
+      "@type": "ContactPoint",
+      "telephone": businessInfo.telephone,
+      "contactType": "customer service",
+      "areaServed": "GB",
+      "availableLanguage": "English"
+    },
+    {
+      "@type": "ContactPoint", 
+      "telephone": businessInfo.mobile,
+      "contactType": "emergency",
+      "areaServed": "GB",
+      "availableLanguage": "English"
+    }
+  ]
+})}
+</script>
+
+<!-- Enhanced Website Structured Data -->
+<script type="application/ld+json">
+{JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "@id": `${baseUrl}#website`,
+  "url": baseUrl,
+  "name": siteName,
+  "description": seoDescription,
+  "publisher": {
+    "@id": `${baseUrl}#business`
+  },
+  "copyrightHolder": {
+    "@id": `${baseUrl}#business`
+  },
+  "copyrightYear": new Date().getFullYear(),
+  "inLanguage": "en-GB",
+  "isAccessibleForFree": true,
+  "potentialAction": [
+    {
+      "@type": "SearchAction",
+      "target": {
+        "@type": "EntryPoint",
+        "urlTemplate": `${baseUrl}/search?q={search_term_string}`
+      },
+      "query-input": "required name=search_term_string"
+    }
+  ],
+  "about": {
+    "@type": "Thing",
+    "name": "Computer Repair Services",
+    "description": "Professional computer and laptop repair services"
+  },
+  "audience": {
+    "@type": "Audience",
+    "audienceType": "Local Residents and Businesses",
+    "geographicArea": serviceAreas.map(area => ({
+      "@type": "City",
+      "name": area
+    }))
+  },
+  "mainEntity": {
+    "@id": `${baseUrl}#business`
+  }
+})}
+</script>
+
+<!-- Enhanced BreadcrumbList -->
+<script type="application/ld+json">
+{JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": breadcrumbs ? breadcrumbs.map((crumb, index) => ({
+    "@type": "ListItem",
+    "position": index + 1,
+    "name": crumb.name,
+    "item": crumb.url
+  })) : [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": baseUrl
+    },
+    ...(pathname && pathname !== '/' ? [{
+      "@type": "ListItem",
+      "position": 2,
+      "name": title || "Page",
+      "item": fullUrl
+    }] : [])
+  ]
+})}
+</script>
+
+<!-- FAQ Structured Data -->
+{faqData && faqData.length > 0 && (
+<script type="application/ld+json">
+{JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqData.map(faq => ({
+    "@type": "Question",
+    "name": faq.question,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": faq.answer
+    }
+  }))
+})}
+</script>
+)}
+
+<!-- Organization Structured Data -->
+<script type="application/ld+json">
+{JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "@id": `${baseUrl}#organization`,
+  "name": businessInfo.name,
+  "url": baseUrl,
+  "logo": seoImage,
+  "description": seoDescription,
+  "foundingDate": "2007",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": businessInfo.address.streetAddress,
+    "addressLocality": businessInfo.address.addressLocality,
+    "addressRegion": businessInfo.address.addressRegion,
+    "postalCode": businessInfo.address.postalCode,
+    "addressCountry": businessInfo.address.addressCountry
+  },
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": businessInfo.telephone,
+    "contactType": "customer service"
+  },
+  "sameAs": businessInfo.socialProfiles
+})}
+</script>
+
+<!-- Service Structured Data -->
+<script type="application/ld+json">
+{JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Computer Repair Services",
+  "description": "Professional computer and laptop repair services in Harold Hill, Romford, and surrounding Essex areas",
+  "provider": {
+    "@id": `${baseUrl}#business`
+  },
+  "serviceType": "Computer Repair",
+  "areaServed": serviceAreas.map(area => ({
+    "@type": "City",
+    "name": area,
+    "containedInPlace": {
+      "@type": "AdministrativeArea", 
+      "name": "Essex"
+    }
+  })),
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Computer Repair Services",
+    "itemListElement": services.map(service => ({
+      "@type": "Offer",
+      "itemOffered": {
+        "@type": "Service",
+        "name": service.name,
+        "description": service.description
+      },
+      "price": service.offers.price,
+      "priceCurrency": service.offers.priceCurrency
+    }))
+  },
+  "audience": {
+    "@type": "Audience",
+    "audienceType": "Individuals and Businesses"
+  },
+  "availableChannel": {
+    "@type": "ServiceChannel",
+    "serviceUrl": baseUrl,
+    "serviceSmsNumber": businessInfo.mobile,
+    "servicePhone": businessInfo.telephone
+  }
+})}
+</script>
