@@ -12,7 +12,12 @@ export interface Props {
   image?: string;
 }
 
-const { title, description, keywords, image } = Astro.props;
+const {
+  title = "Chiltern Computers",
+  description = "Professional computer repairs and custom builds in Harold Hill & Romford.",
+  keywords = "computer repairs, custom PCs, Harold Hill, Romford, Chiltern Computers",
+  image = "/main-site/og-image.jpg"
+} = Astro.props;
 const { pathname } = Astro.url;
 ---
 
@@ -28,6 +33,7 @@ const { pathname } = Astro.url;
       url={Astro.url.href}
       pathname={pathname}
     />
+    <link rel="icon" href="/main-site/favicon.ico" />
   </head>
   <body class="font-sans text-gray-800 bg-gray-50">
     <Header pathname={pathname} />

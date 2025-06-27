@@ -3,20 +3,72 @@
 const { url } = Astro;
 ---
 
-<header id="main-header" class="bg-white/95 backdrop-blur-md shadow-md sticky top-0 z-40 transition-all duration-300" role="banner">
+<!-- Schema markup for local business SEO -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ComputerRepair",
+  "name": "Chiltern Computers",
+  "description": "Professional IT Support & Computer Repairs",
+  "url": "https://www.chilterncomputers.net",
+  "telephone": "01708347341",
+  "address": {
+    "@type": "38 Hilldene Avenue",
+    "addressLocality": "Romford",
+    "addressRegion": "Essex",
+    "postalCode": "RM3 8YP",
+    "addressCountry": "GB"
+  },
+  "openingHours": "Mo-Su 09:00-21:00",
+  "priceRange": "££"
+}
+</script>
+
+<header id="main-header" class="bg-white/95 backdrop-blur-md shadow-md sticky top-0 z-50 transition-all duration-300" role="banner">
+  <!-- Trust indicators micro-banner -->
+  <div id="trust-banner" class="bg-gradient-to-r from-emerald-50 to-blue-50 border-b border-emerald-100/50 py-1 text-center text-xs transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="flex flex-wrap items-center justify-center gap-3 sm:gap-6 text-gray-700">
+        <div class="flex items-center gap-1">
+          <svg class="w-3 h-3 text-emerald-600 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+          </svg>
+          <span class="whitespace-nowrap">Same-day service</span>
+        </div>
+        <div class="flex items-center gap-1">
+          <svg class="w-3 h-3 text-blue-600 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+            <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"/>
+          </svg>
+          <span class="whitespace-nowrap">Free diagnosis</span>
+        </div>
+        <div class="hidden sm:flex items-center gap-1">
+          <svg class="w-3 h-3 text-amber-600 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+            <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+          </svg>
+          <span class="whitespace-nowrap">5★ Google Reviews</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <div class="max-w-7xl mx-auto px-4">
     <div class="flex justify-between items-center py-4 transition-all duration-300" id="header-content">
-      <!-- Logo and Brand -->
-      <a href="/" class="flex items-center gap-3 group relative" aria-label="Chiltern Computers Homepage">
-        <!-- Add a subtle glow effect -->
+      <!-- Enhanced Logo and Brand -->
+      <a href="/main-site/" class="flex items-center gap-3 group relative" aria-label="Chiltern Computers Homepage">
+        <!-- Glow effect -->
         <div class="absolute -inset-2 bg-gradient-to-r from-brand-400/20 to-blue-500/20 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-sm"></div>
+        
+        <!-- Logo with loading optimization -->
         <img 
-          src="/logo_homepage.webp" 
+          src="/main-site/logo_homepage.webp" 
           alt="Chiltern Computers Logo" 
           class="h-10 w-auto transition-all duration-300 group-hover:scale-110 relative z-10"
           width="40"
           height="40"
+          loading="eager"
+          decoding="async"
         />
+        
         <div class="relative z-10">
           <h1 class="text-xl font-bold text-brand-600 group-hover:text-brand-700 transition-all duration-300">
             Chiltern Computers
@@ -27,32 +79,46 @@ const { url } = Astro;
         </div>
       </a>
 
-      <!-- Mobile menu button with animation -->
+      <!-- Call-to-Action Phone Button (Desktop) -->
+      <div class="hidden lg:flex items-center gap-4">
+        <a 
+          href="tel:+44-your-number" 
+          class="flex items-center gap-2 bg-gradient-to-r from-emerald-500 to-emerald-600 text-white px-4 py-2 rounded-lg hover:from-emerald-600 hover:to-emerald-700 transition-all duration-300 shadow-md hover:shadow-lg transform hover:-translate-y-0.5 group"
+          aria-label="Call Chiltern Computers"
+        >
+          <svg class="w-4 h-4 group-hover:animate-pulse" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+            <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"/>
+          </svg>
+          <span class="font-semibold">Call Now</span>
+        </a>
+      </div>
+
+      <!-- Enhanced Mobile menu button -->
       <button
         id="mobileMenuToggle"
-        class="md:hidden flex flex-col gap-1 p-2 relative overflow-hidden group"
+        class="md:hidden flex flex-col gap-1 p-2 relative overflow-hidden group rounded-md transition-all duration-300"
         aria-label="Toggle mobile menu"
         aria-expanded="false"
       >
         <div class="absolute inset-0 bg-brand-100 rounded-md scale-0 group-hover:scale-100 transition-transform duration-200"></div>
-        <span class="w-6 h-0.5 bg-gray-600 transition-all duration-300 relative z-10 group-hover:bg-brand-600"></span>
-        <span class="w-6 h-0.5 bg-gray-600 transition-all duration-300 relative z-10 group-hover:bg-brand-600"></span>
-        <span class="w-6 h-0.5 bg-gray-600 transition-all duration-300 relative z-10 group-hover:bg-brand-600"></span>
+        <span class="menu-line w-6 h-0.5 bg-gray-600 transition-all duration-300 relative z-10 group-hover:bg-brand-600"></span>
+        <span class="menu-line w-6 h-0.5 bg-gray-600 transition-all duration-300 relative z-10 group-hover:bg-brand-600"></span>
+        <span class="menu-line w-6 h-0.5 bg-gray-600 transition-all duration-300 relative z-10 group-hover:bg-brand-600"></span>
       </button>
 
-      <!-- Desktop Navigation with enhanced hover effects -->
-      <nav class="hidden md:flex space-x-1" role="navigation" aria-label="Main navigation">
+      <!-- Enhanced Desktop Navigation -->
+      <nav class="hidden md:flex items-center space-x-1" role="navigation" aria-label="Main navigation">
         <a 
-          href="/" 
+          href="/main-site/" 
           class="nav-link px-4 py-2 rounded-md hover:bg-brand-50 hover:text-brand-600 transition-all duration-300 font-medium relative overflow-hidden group"
-          aria-current={url.pathname === '/' ? 'page' : undefined}
+          aria-current={url.pathname === '/main-site/' ? 'page' : undefined}
         >
           <span class="relative z-10">Home</span>
           <div class="absolute inset-0 bg-gradient-to-r from-brand-500/10 to-blue-500/10 translate-x-full group-hover:translate-x-0 transition-transform duration-300"></div>
         </a>
 
-        <!-- Enhanced Services Dropdown -->
-        <div class="relative">
+       <!-- Enhanced Services Dropdown with better UX -->
+        <div class="relative group">
           <button
             id="servicesToggle"
             class="nav-link px-4 py-2 rounded-md hover:bg-brand-50 hover:text-brand-600 transition-all duration-300 font-medium flex items-center gap-1 relative overflow-hidden group"
@@ -61,7 +127,7 @@ const { url } = Astro;
             aria-haspopup="true"
           >
             <span class="relative z-10">Services</span>
-            <svg class="w-4 h-4 transition-all duration-300 relative z-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg id="services-chevron" class="w-4 h-4 transition-all duration-300 relative z-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
             </svg>
             <div class="absolute inset-0 bg-gradient-to-r from-brand-500/10 to-blue-500/10 translate-x-full group-hover:translate-x-0 transition-transform duration-300"></div>
@@ -69,51 +135,80 @@ const { url } = Astro;
 
           <div
             id="servicesDropdown"
-            class="absolute left-0 mt-2 w-56 bg-white/95 backdrop-blur-md border border-gray-200/60 rounded-lg shadow-xl z-50 hidden opacity-0 transform scale-95 transition-all duration-300"
+            class="absolute left-0 mt-2 w-64 bg-white/98 backdrop-blur-md border border-gray-200/60 rounded-xl shadow-2xl z-50 hidden opacity-0 transform scale-95 transition-all duration-300"
             role="menu"
           >
-            <a
-              href="/services/custom-pcs"
-              class="block px-4 py-3 hover:bg-gradient-to-r hover:from-brand-50 hover:to-blue-50 text-gray-700 hover:text-brand-600 transition-all duration-300 first:rounded-t-lg relative group"
-              role="menuitem"
-            >
-              <div class="absolute left-0 top-0 h-full w-1 bg-gradient-to-b from-brand-500 to-blue-500 scale-y-0 group-hover:scale-y-100 transition-transform duration-300 origin-top"></div>
-              <strong class="relative z-10">Custom PCs</strong>
-              <span class="block text-sm text-gray-500 group-hover:text-gray-600 transition-colors duration-300 relative z-10">High-performance builds</span>
-            </a>
-            <a
-              href="/services/repairs"
-              class="block px-4 py-3 hover:bg-gradient-to-r hover:from-brand-50 hover:to-blue-50 text-gray-700 hover:text-brand-600 transition-all duration-300 relative group"
-              role="menuitem"
-            >
-              <div class="absolute left-0 top-0 h-full w-1 bg-gradient-to-b from-brand-500 to-blue-500 scale-y-0 group-hover:scale-y-100 transition-transform duration-300 origin-top"></div>
-              <strong class="relative z-10">Computer Repairs</strong>
-              <span class="block text-sm text-gray-500 group-hover:text-gray-600 transition-colors duration-300 relative z-10">Fast diagnosis & fixes</span>
-            </a>
-            <a
-              href="/services/refurbished"
-              class="block px-4 py-3 hover:bg-gradient-to-r hover:from-brand-50 hover:to-blue-50 text-gray-700 hover:text-brand-600 transition-all duration-300 last:rounded-b-lg relative group"
-              role="menuitem"
-            >
-              <div class="absolute left-0 top-0 h-full w-1 bg-gradient-to-b from-brand-500 to-blue-500 scale-y-0 group-hover:scale-y-100 transition-transform duration-300 origin-top"></div>
-              <strong class="relative z-10">Refurbished PCs</strong>
-              <span class="block text-sm text-gray-500 group-hover:text-gray-600 transition-colors duration-300 relative z-10">Quality pre-owned systems</span>
-            </a>
+            <div class="p-2">
+              <a
+                href="/main-site/services/custom-pcs"
+                class="block px-4 py-3 hover:bg-gradient-to-r hover:from-brand-50 hover:to-blue-50 text-gray-700 hover:text-brand-600 transition-all duration-300 rounded-lg relative group"
+                role="menuitem"
+              >
+                <div class="absolute left-0 top-1/2 -translate-y-1/2 h-8 w-1 bg-gradient-to-b from-brand-500 to-blue-500 scale-y-0 group-hover:scale-y-100 transition-transform duration-300 origin-center rounded-full"></div>
+                <div class="flex items-start gap-3 pl-4">
+                  <svg class="w-5 h-5 text-brand-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                  </svg>
+                  <div>
+                    <strong class="relative z-10">Custom PCs</strong>
+                    <span class="block text-sm text-gray-500 group-hover:text-gray-600 transition-colors duration-300 relative z-10">Gaming & workstations built to spec</span>
+                  </div>
+                </div>
+              </a>
+              
+              <a
+                href="/main-site/services/repairs"
+                class="block px-4 py-3 hover:bg-gradient-to-r hover:from-brand-50 hover:to-blue-50 text-gray-700 hover:text-brand-600 transition-all duration-300 rounded-lg relative group"
+                role="menuitem"
+              >
+                <div class="absolute left-0 top-1/2 -translate-y-1/2 h-8 w-1 bg-gradient-to-b from-brand-500 to-blue-500 scale-y-0 group-hover:scale-y-100 transition-transform duration-300 origin-center rounded-full"></div>
+                <div class="flex items-start gap-3 pl-4">
+                  <svg class="w-5 h-5 text-brand-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                  </svg>
+                  <div>
+                    <strong class="relative z-10">Repairs & Upgrades</strong>
+                    <span class="block text-sm text-gray-500 group-hover:text-gray-600 transition-colors duration-300 relative z-10">Fast diagnosis & professional fixes</span>
+                  </div>
+                </div>
+              </a>
+              
+              <a
+                href="/main-site/services/refurbished"
+                class="block px-4 py-3 hover:bg-gradient-to-r hover:from-brand-50 hover:to-blue-50 text-gray-700 hover:text-brand-600 transition-all duration-300 rounded-lg relative group"
+                role="menuitem"
+              >
+                <div class="absolute left-0 top-1/2 -translate-y-1/2 h-8 w-1 bg-gradient-to-b from-brand-500 to-blue-500 scale-y-0 group-hover:scale-y-100 transition-transform duration-300 origin-center rounded-full"></div>
+                <div class="flex items-start gap-3 pl-4">
+                  <svg class="w-5 h-5 text-brand-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
+                  </svg>
+                  <div>
+                    <strong class="relative z-10">Refurbished PCs</strong>
+                    <span class="block text-sm text-gray-500 group-hover:text-gray-600 transition-colors duration-300 relative z-10">Quality pre-owned systems with warranty</span>
+                  </div>
+                </div>
+              </a>
+            </div>
           </div>
         </div>
 
+       
+
         <a 
-          href="/about" 
+          href="/main-site/about" 
           class="nav-link px-4 py-2 rounded-md hover:bg-brand-50 hover:text-brand-600 transition-all duration-300 font-medium relative overflow-hidden group"
-          aria-current={url.pathname === '/about' ? 'page' : undefined}
+          aria-current={url.pathname === '/main-site/about' ? 'page' : undefined}
         >
           <span class="relative z-10">About</span>
           <div class="absolute inset-0 bg-gradient-to-r from-brand-500/10 to-blue-500/10 translate-x-full group-hover:translate-x-0 transition-transform duration-300"></div>
         </a>
+        
         <a 
-          href="/contact" 
+          href="/main-site/contact" 
           class="nav-link px-4 py-2 rounded-md hover:bg-brand-50 hover:text-brand-600 transition-all duration-300 font-medium relative overflow-hidden group border-2 border-transparent hover:border-brand-200"
-          aria-current={url.pathname === '/contact' ? 'page' : undefined}
+          aria-current={url.pathname === '/main-site/contact' ? 'page' : undefined}
         >
           <span class="relative z-10">Contact</span>
           <div class="absolute inset-0 bg-gradient-to-r from-brand-500/10 to-blue-500/10 translate-x-full group-hover:translate-x-0 transition-transform duration-300"></div>
@@ -122,207 +217,572 @@ const { url } = Astro;
     </div>
   </div>
   
-  <!-- Animated progress bar that shows scroll progress -->
-  <div id="scroll-progress" class="absolute bottom-0 left-0 h-0.5 bg-gradient-to-r from-brand-500 to-blue-500 transition-all duration-100 ease-out" style="width: 0%"></div>
-</header>
+  <!-- Enhanced scroll progress bar -->
+  <div id="scroll-progress" class="absolute bottom-0 left-0 h-0.5 bg-gradient-to-r from-brand-500 to-blue-500 transition-all duration-100 ease-out shadow-sm" style="width: 0%"></div>
+
+  <!-- Mobile Menu Overlay -->
+  <div id="mobileMenuOverlay" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-40 hidden opacity-0 transition-opacity duration-300 md:hidden"></div>
+  
+  <!-- Enhanced Mobile Menu -->
+  <nav 
+    id="mobileMenu" 
+    class="fixed top-0 right-0 h-full w-80 max-w-[85vw] bg-white/98 backdrop-blur-md shadow-2xl z-50 transform translate-x-full transition-transform duration-300 md:hidden"
+    role="navigation" 
+    aria-label="Mobile navigation"
+  >
+    <div class="p-6">
+      <!-- Mobile menu header -->
+      <div class="flex items-center justify-between mb-8">
+        <div class="flex items-center gap-2">
+          <img src="/main-site/logo_homepage.webp" alt="Chiltern Computers" class="h-8 w-auto" width="32" height="32" loading="lazy">
+          <span class="font-bold text-brand-600">Menu</span>
+        </div>
+        <button id="closeMobileMenu" class="p-2 hover:bg-gray-100 rounded-lg transition-colors duration-200" aria-label="Close menu">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Mobile menu items -->
+      <div class="space-y-2">
+        <a href="/main-site/" class="block px-4 py-3 text-gray-700 hover:bg-brand-50 hover:text-brand-600 rounded-lg transition-all duration-200 font-medium">
+          Home
+        </a>
+        
+       <!-- Mobile services submenu -->
+<div class="space-y-2">
+  <button id="mobileServicesToggle" class="w-full flex items-center justify-between px-4 py-3 text-gray-700 hover:bg-brand-50 hover:text-brand-600 rounded-lg transition-all duration-200 font-medium">
+    <span>Services</span>
+    <svg id="mobile-services-chevron" class="w-5 h-5 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+    </svg>
+  </button>
+  <div id="mobileServicesSubmenu" class="hidden ml-4 space-y-2">
+    <a href="/main-site/services/custom-pcs" class="block px-4 py-2 text-sm text-gray-600 hover:bg-brand-50 hover:text-brand-600 rounded-lg transition-all duration-200">
+      Custom PCs
+    </a>
+    <a href="/main-site/services/repairs" class="block px-4 py-2 text-sm text-gray-600 hover:bg-brand-50 hover:text-brand-600 rounded-lg transition-all duration-200">
+      Repairs & Upgrades
+    </a>
+    <a href="/main-site/services/refurbished" class="block px-4 py-2 text-sm text-gray-600 hover:bg-brand-50 hover:text-brand-600 rounded-lg transition-all duration-200">
+      Refurbished PCs
+    </a>
+  </div>
+</div>
+
+<!-- Mobile games submenu -->
+<div class="space-y-2">
+  <button id="mobileGamesToggle" class="w-full flex items-center justify-between px-4 py-3 text-gray-700 dark:text-gray-200 hover:bg-brand-50 hover:text-brand-600 dark:hover:bg-gray-700 dark:hover:text-brand-400 rounded-lg transition-all duration-200 font-medium">
+    <span>Games</span>
+    <svg id="mobile-games-chevron" class="w-5 h-5 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+    </svg>
+  </button>
+  <div id="mobileGamesSubmenu" class="hidden ml-4 space-y-2 bg-white dark:bg-gray-800 rounded-lg">
+    <a href="/main-site/games/space-invaders" class="block px-4 py-2 text-sm text-gray-800 dark:text-gray-200 hover:bg-brand-50 hover:text-brand-600 dark:hover:bg-gray-700 dark:hover:text-brand-400 rounded-lg transition-all duration-200">
+      Space Invaders
+    </a>
+    <a href="/main-site/games/asteroids" class="block px-4 py-2 text-sm text-gray-800 dark:text-gray-200 hover:bg-brand-50 hover:text-brand-600 dark:hover:bg-gray-700 dark:hover:text-brand-400 rounded-lg transition-all duration-200">
+      Asteroids
+    </a>
+  </div>
+</div>
+
+
+
+<script>
+  // Services toggle
+  const servicesToggle = document.getElementById('mobileServicesToggle');
+  const servicesSubmenu = document.getElementById('mobileServicesSubmenu');
+  const servicesChevron = document.getElementById('mobile-services-chevron');
+
+  servicesToggle.addEventListener('click', () => {
+    servicesSubmenu.classList.toggle('hidden');
+    servicesChevron.classList.toggle('rotate-180');
+  });
+
+  
+</script>
+
+        
+        <a href="/main-site/about" class="block px-4 py-3 text-gray-700 hover:bg-brand-50 hover:text-brand-600 rounded-lg transition-all duration-200 font-medium">
+          About
+        </a>
+        <a href="/main-site/contact" class="block px-4 py-3 text-gray-700 hover:bg-brand-50 hover:text-brand-600 rounded-lg transition-all duration-200 font-medium">
+          Contact
+        </a>
+      </div>
+
+      <script>
+       // Enhanced dropdown functionality for both Services and Games
+document.addEventListener('DOMContentLoaded', function() {
+  // Services dropdown elements
+  const servicesToggle = document.getElementById('servicesToggle');
+  const servicesDropdown = document.getElementById('servicesDropdown');
+  const servicesChevron = document.getElementById('services-chevron');
+  
+  
+  
+  // Mobile menu elements
+  const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
+  const mobileMenu = document.getElementById('mobileMenu');
+  const closeMobileMenu = document.getElementById('closeMobileMenu');
+  
+  // Mobile services submenu
+  const mobileServicesToggle = document.getElementById('mobileServicesToggle');
+  const mobileServicesSubmenu = document.getElementById('mobileServicesSubmenu');
+  const mobileServicesChevron = document.getElementById('mobile-services-chevron');
+  
+  
+
+  // Enhanced dropdown functionality that works for both dropdowns
+  function createDropdownHandler(toggle, dropdown, chevron) {
+    if (!toggle || !dropdown || !chevron) return;
+    
+    let isOpen = false;
+    let hoverTimer;
+
+    // Show dropdown on hover
+    toggle.addEventListener('mouseenter', () => {
+      clearTimeout(hoverTimer);
+      isOpen = true;
+      dropdown.classList.remove('hidden');
+      dropdown.classList.remove('opacity-0', 'scale-95');
+      dropdown.classList.add('opacity-100', 'scale-100');
+      toggle.setAttribute('aria-expanded', 'true');
+      chevron.style.transform = 'rotate(180deg)';
+    });
+
+    toggle.addEventListener('mouseleave', () => {
+      hoverTimer = setTimeout(() => {
+        isOpen = false;
+        dropdown.classList.add('opacity-0', 'scale-95');
+        dropdown.classList.remove('opacity-100', 'scale-100');
+        toggle.setAttribute('aria-expanded', 'false');
+        chevron.style.transform = 'rotate(0deg)';
+        setTimeout(() => {
+          dropdown.classList.add('hidden');
+        }, 300);
+      }, 150);
+    });
+
+    dropdown.addEventListener('mouseenter', () => {
+      clearTimeout(hoverTimer);
+    });
+
+    dropdown.addEventListener('mouseleave', () => {
+      hoverTimer = setTimeout(() => {
+        isOpen = false;
+        dropdown.classList.add('opacity-0', 'scale-95');
+        dropdown.classList.remove('opacity-100', 'scale-100');
+        toggle.setAttribute('aria-expanded', 'false');
+        chevron.style.transform = 'rotate(0deg)';
+        setTimeout(() => {
+          dropdown.classList.add('hidden');
+        }, 300);
+      }, 150);
+    });
+
+    // Click functionality for mobile/touch devices
+    toggle.addEventListener('click', (e) => {
+      e.preventDefault();
+      
+      // Close other dropdowns first
+      closeAllDropdowns();
+      
+      isOpen = !isOpen;
+      
+      if (isOpen) {
+        dropdown.classList.remove('hidden');
+        dropdown.classList.remove('opacity-0', 'scale-95');
+        dropdown.classList.add('opacity-100', 'scale-100');
+        toggle.setAttribute('aria-expanded', 'true');
+        chevron.style.transform = 'rotate(180deg)';
+      } else {
+        dropdown.classList.add('opacity-0', 'scale-95');
+        dropdown.classList.remove('opacity-100', 'scale-100');
+        toggle.setAttribute('aria-expanded', 'false');
+        chevron.style.transform = 'rotate(0deg)';
+        setTimeout(() => {
+          dropdown.classList.add('hidden');
+        }, 300);
+      }
+    });
+
+    return { isOpen: () => isOpen, close: () => {
+      isOpen = false;
+      dropdown.classList.add('opacity-0', 'scale-95');
+      dropdown.classList.remove('opacity-100', 'scale-100');
+      toggle.setAttribute('aria-expanded', 'false');
+      chevron.style.transform = 'rotate(0deg)';
+      setTimeout(() => {
+        dropdown.classList.add('hidden');
+      }, 300);
+    }};
+  }
+
+  // Create dropdown handlers
+  const servicesHandler = createDropdownHandler(servicesToggle, servicesDropdown, servicesChevron);
+  const gamesHandler = createDropdownHandler(gamesToggle, gamesDropdown, gamesChevron);
+
+  // Function to close all dropdowns
+  function closeAllDropdowns() {
+    if (servicesHandler) servicesHandler.close();
+   
+  }
+
+  // Close dropdowns when clicking outside
+  document.addEventListener('click', (e) => {
+    if (!e.target.closest('.relative.group')) {
+      closeAllDropdowns();
+    }
+  });
+
+  // Mobile menu functionality
+  function toggleMobileSubmenu(toggle, submenu, chevron) {
+    const isOpen = !submenu.classList.contains('hidden');
+    
+    if (isOpen) {
+      submenu.classList.add('hidden');
+      chevron.style.transform = 'rotate(0deg)';
+    } else {
+      submenu.classList.remove('hidden');
+      chevron.style.transform = 'rotate(180deg)';
+    }
+  }
+
+  // Mobile services submenu
+  if (mobileServicesToggle) {
+    mobileServicesToggle.addEventListener('click', (e) => {
+      e.preventDefault();
+      toggleMobileSubmenu(mobileServicesToggle, mobileServicesSubmenu, mobileServicesChevron);
+    });
+  }
+
+  
+
+  // Close mobile menu
+  if (closeMobileMenu) {
+    closeMobileMenu.addEventListener('click', () => {
+      mobileMenu.classList.add('translate-x-full');
+      mobileMenuOverlay.classList.add('opacity-0');
+      setTimeout(() => {
+        mobileMenuOverlay.classList.add('hidden');
+      }, 300);
+    });
+  }
+
+  // Close mobile menu when clicking overlay
+  if (mobileMenuOverlay) {
+    mobileMenuOverlay.addEventListener('click', () => {
+      mobileMenu.classList.add('translate-x-full');
+      mobileMenuOverlay.classList.add('opacity-0');
+      setTimeout(() => {
+        mobileMenuOverlay.classList.add('hidden');
+      }, 300);
+    });
+  }
+
+  // Keyboard navigation support
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      closeAllDropdowns();
+    }
+  });
+
+  // Scroll progress bar
+  const scrollProgress = document.getElementById('scroll-progress');
+  if (scrollProgress) {
+    window.addEventListener('scroll', () => {
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const scrollPercent = (scrollTop / scrollHeight) * 100;
+      scrollProgress.style.width = scrollPercent + '%';
+    });
+  }
+});
+      </script>
+    </div>
+  </nav>
+
+      
 
 <script>
   document.addEventListener('DOMContentLoaded', function() {
     const header = document.getElementById('main-header');
     const headerContent = document.getElementById('header-content');
     const scrollProgress = document.getElementById('scroll-progress');
+    const trustBanner = document.getElementById('trust-banner');
     const servicesToggle = document.getElementById('servicesToggle');
     const servicesDropdown = document.getElementById('servicesDropdown');
-    const chevronIcon = servicesToggle?.querySelector('svg');
+    const chevronIcon = document.getElementById('services-chevron');
     
-    let isOpen = false;
+    // Mobile menu elements
+    const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
+    const closeMobileMenu = document.getElementById('closeMobileMenu');
+    const mobileServicesToggle = document.getElementById('mobileServicesToggle');
+    const mobileServicesSubmenu = document.getElementById('mobileServicesSubmenu');
+    const mobileServicesChevron = document.getElementById('mobile-services-chevron');
+    
+    let isServicesOpen = false;
+    let isMobileMenuOpen = false;
+    let isMobileServicesOpen = false;
     let lastScrollY = 0;
 
-    // Scroll effects
+    // Enhanced scroll effects with performance optimization
+    let ticking = false;
     function updateHeaderOnScroll() {
       const scrollY = window.scrollY;
       const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-      const scrollPercent = (scrollY / docHeight) * 100;
+      const scrollPercent = Math.min((scrollY / docHeight) * 100, 100);
 
       // Update scroll progress bar
       if (scrollProgress) {
-        scrollProgress.style.width = `${Math.min(scrollPercent, 100)}%`;
+        scrollProgress.style.width = `${scrollPercent}%`;
       }
 
+      // Header styling changes
       if (scrollY > 20) {
-        // Scrolled down - add effects
         header?.classList.add('bg-white/98', 'shadow-lg');
         header?.classList.remove('bg-white/95', 'shadow-md');
         headerContent?.classList.add('py-3');
         headerContent?.classList.remove('py-4');
         
-        // Add subtle color shift to brand elements
-        const brandElements = document.querySelectorAll('.text-brand-600');
-        brandElements.forEach(el => {
-          el.classList.add('text-brand-700');
-          el.classList.remove('text-brand-600');
-        });
+        // Hide trust banner on scroll for cleaner look
+        if (trustBanner) {
+          trustBanner.style.transform = 'translateY(-100%)';
+          trustBanner.style.opacity = '0';
+        }
       } else {
-        // At top - reset
         header?.classList.add('bg-white/95', 'shadow-md');
         header?.classList.remove('bg-white/98', 'shadow-lg');
         headerContent?.classList.add('py-4');
         headerContent?.classList.remove('py-3');
         
-        // Reset brand colors
-        const brandElements = document.querySelectorAll('.text-brand-700');
-        brandElements.forEach(el => {
-          el.classList.add('text-brand-600');
-          el.classList.remove('text-brand-700');
-        });
+        // Show trust banner
+        if (trustBanner) {
+          trustBanner.style.transform = 'translateY(0)';
+          trustBanner.style.opacity = '1';
+        }
       }
 
-      // Hide/show header on scroll direction (optional - comment out if you don't want this)
+      // Smart header hide/show
       if (scrollY > 100) {
-        if (scrollY > lastScrollY && scrollY > 200) {
+        if (scrollY > lastScrollY && scrollY > 200 && !isServicesOpen && !isMobileMenuOpen) {
           // Scrolling down - hide header
-          header?.classList.add('-translate-y-full');
+          header.style.transform = 'translateY(-100%)';
         } else {
           // Scrolling up - show header
-          header?.classList.remove('-translate-y-full');
+          header.style.transform = 'translateY(0)';
         }
       }
       
       lastScrollY = scrollY;
+      ticking = false;
     }
 
-    // Throttled scroll listener for better performance
-    let ticking = false;
-    function onScroll() {
+    function requestScrollUpdate() {
       if (!ticking) {
-        requestAnimationFrame(() => {
-          updateHeaderOnScroll();
-          ticking = false;
-        });
+        requestAnimationFrame(updateHeaderOnScroll);
         ticking = true;
       }
     }
 
-    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('scroll', requestScrollUpdate, { passive: true });
 
-    // Enhanced dropdown functionality
-    function toggleDropdown() {
-      isOpen = !isOpen;
+    // Enhanced mobile menu functionality
+    function openMobileMenu() {
+      isMobileMenuOpen = true;
+      document.body.style.overflow = 'hidden';
+      mobileMenuOverlay?.classList.remove('hidden');
+      mobileMenu?.classList.remove('translate-x-full');
       
-      if (isOpen) {
-        // Show dropdown with stagger animation
-        servicesDropdown?.classList.remove('hidden');
-        setTimeout(() => {
-          servicesDropdown?.classList.remove('opacity-0', 'scale-95');
-          servicesDropdown?.classList.add('opacity-100', 'scale-100');
-        }, 10);
-        
-        // Rotate chevron with bounce
-        chevronIcon?.classList.add('rotate-180', 'scale-110');
-        setTimeout(() => {
-          chevronIcon?.classList.remove('scale-110');
-        }, 200);
-        
-        servicesToggle?.setAttribute('aria-expanded', 'true');
-      } else {
-        // Hide dropdown
-        servicesDropdown?.classList.remove('opacity-100', 'scale-100');
-        servicesDropdown?.classList.add('opacity-0', 'scale-95');
-        setTimeout(() => {
-          servicesDropdown?.classList.add('hidden');
-        }, 300);
-        
-        // Reset chevron
-        chevronIcon?.classList.remove('rotate-180');
-        servicesToggle?.setAttribute('aria-expanded', 'false');
-      }
+      // Add staggered animation to menu items
+      setTimeout(() => {
+        mobileMenuOverlay?.classList.remove('opacity-0');
+      }, 10);
     }
 
-    // Dropdown event listeners
-    servicesToggle?.addEventListener('click', function(e) {
-      e.preventDefault();
-      e.stopPropagation();
-      toggleDropdown();
-    });
+    function closeMobileMenuFunc() {
+      isMobileMenuOpen = false;
+      document.body.style.overflow = '';
+      mobileMenuOverlay?.classList.add('opacity-0');
+      mobileMenu?.classList.add('translate-x-full');
+      
+      setTimeout(() => {
+        mobileMenuOverlay?.classList.add('hidden');
+      }, 300);
+    }
 
-    // Enhanced outside click detection
-    document.addEventListener('click', function(e) {
-      if (isOpen && !servicesToggle?.contains(e.target) && !servicesDropdown?.contains(e.target)) {
-        toggleDropdown();
+    // Mobile menu event listeners
+    mobileMenuToggle?.addEventListener('click', openMobileMenu);
+    closeMobileMenu?.addEventListener('click', closeMobileMenuFunc);
+    mobileMenuOverlay?.addEventListener('click', closeMobileMenuFunc);
+
+    // Mobile services submenu
+    mobileServicesToggle?.addEventListener('click', () => {
+      isMobileServicesOpen = !isMobileServicesOpen;
+      if (isMobileServicesOpen) {
+        mobileServicesSubmenu?.classList.remove('hidden');
+        mobileServicesChevron.style.transform = 'rotate(180deg)';
+      } else {
+        mobileServicesSubmenu?.classList.add('hidden');
+        mobileServicesChevron.style.transform = 'rotate(0deg)';
       }
     });
 
-    // Keyboard navigation
-    document.addEventListener('keydown', function(e) {
-      if (e.key === 'Escape' && isOpen) {
-        toggleDropdown();
-        servicesToggle?.focus();
-      }
-    });
+    // Enhanced desktop services dropdown
+    if (servicesToggle && servicesDropdown && chevronIcon) {
+      let hoverTimer;
 
-    // Close dropdown when navigating
-    servicesDropdown?.addEventListener('click', function(e) {
-      if (e.target.tagName === 'A') {
-        setTimeout(() => toggleDropdown(), 150);
-      }
-    });
+      // Show dropdown on hover
+      servicesToggle.addEventListener('mouseenter', () => {
+        clearTimeout(hoverTimer);
+        isServicesOpen = true;
+        servicesDropdown.classList.remove('hidden');
+        servicesDropdown.classList.remove('opacity-0', 'scale-95');
+        servicesDropdown.classList.add('opacity-100', 'scale-100');
+        servicesToggle.setAttribute('aria-expanded', 'true');
+        chevronIcon.style.transform = 'rotate(180deg)';
+      });
 
-    // Add loading animation to nav links
-    const navLinks = document.querySelectorAll('.nav-link');
-    navLinks.forEach(link => {
-      link.addEventListener('click', function(e) {
-        if (this.href && this.href !== window.location.href) {
-          // Add loading state
-          this.style.opacity = '0.7';
-          this.style.transform = 'scale(0.98)';
+      servicesToggle.addEventListener('mouseleave', () => {
+        hoverTimer = setTimeout(() => {
+          isServicesOpen = false;
+          servicesDropdown.classList.add('opacity-0', 'scale-95');
+          servicesDropdown.classList.remove('opacity-100', 'scale-100');
+          servicesToggle.setAttribute('aria-expanded', 'false');
+          chevronIcon.style.transform = 'rotate(0deg)';
+          setTimeout(() => {
+            servicesDropdown.classList.add('hidden');
+          }, 300);
+        }, 150);
+      });
+
+      servicesDropdown.addEventListener('mouseenter', () => {
+        clearTimeout(hoverTimer);
+      });
+
+      servicesDropdown.addEventListener('mouseleave', () => {
+        hoverTimer = setTimeout(() => {
+          isServicesOpen = false;
+          servicesDropdown.classList.add('opacity-0', 'scale-95');
+          servicesDropdown.classList.remove('opacity-100', 'scale-100');
+          servicesToggle.setAttribute('aria-expanded', 'false');
+          chevronIcon.style.transform = 'rotate(0deg)';
+          setTimeout(() => {
+            servicesDropdown.classList.add('hidden');
+          }, 300);
+        }, 150);
+      });
+
+      // Click functionality for mobile/touch devices
+      servicesToggle.addEventListener('click', (e) => {
+        e.preventDefault();
+        isServicesOpen = !isServicesOpen;
+        
+        if (isServicesOpen) {
+          servicesDropdown.classList.remove('hidden');
+          servicesDropdown.classList.remove('opacity-0', 'scale-95');
+          servicesDropdown.classList.add('opacity-100', 'scale-100');
+          servicesToggle.setAttribute('aria-expanded', 'true');
+          chevronIcon.style.transform = 'rotate(180deg)';
+        } else {
+          servicesDropdown.classList.add('opacity-0', 'scale-95');
+          servicesDropdown.classList.remove('opacity-100', 'scale-100');
+          servicesToggle.setAttribute('aria-expanded', 'false');
+          chevronIcon.style.transform = 'rotate(0deg)';
+          setTimeout(() => {
+            servicesDropdown.classList.add('hidden');
+          }, 300);
+        }
+      });
+
+      // Close dropdown when clicking outside
+      document.addEventListener('click', (e) => {
+        if (!servicesToggle.contains(e.target) && !servicesDropdown.contains(e.target)) {
+          if (isServicesOpen) {
+            isServicesOpen = false;
+            servicesDropdown.classList.add('opacity-0', 'scale-95');
+            servicesDropdown.classList.remove('opacity-100', 'scale-100');
+            servicesToggle.setAttribute('aria-expanded', 'false');
+            chevronIcon.style.transform = 'rotate(0deg)';
+            setTimeout(() => {
+              servicesDropdown.classList.add('hidden');
+            }, 300);
+          }
+        }
+      });
+    }
+
+    // Enhanced mobile menu button animation
+    const menuLines = document.querySelectorAll('.menu-line');
+    mobileMenuToggle?.addEventListener('click', () => {
+      menuLines.forEach((line, index) => {
+        if (isMobileMenuOpen) {
+          // Transform to X
+          if (index === 0) line.style.transform = 'rotate(45deg) translateY(6px)';
+          if (index === 1) line.style.opacity = '0';
+          if (index === 2) line.style.transform = 'rotate(-45deg) translateY(-6px)';
+        } else {
+          // Reset to hamburger
+          line.style.transform = '';
+          line.style.opacity = '';
         }
       });
     });
 
-    // Initialize header state
-    updateHeaderOnScroll();
+    // Keyboard navigation support
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        if (isMobileMenuOpen) {
+          closeMobileMenuFunc();
+        }
+        if (isServicesOpen) {
+          isServicesOpen = false;
+          servicesDropdown.classList.add('opacity-0', 'scale-95');
+          servicesDropdown.classList.remove('opacity-100', 'scale-100');
+          servicesToggle.setAttribute('aria-expanded', 'false');
+          chevronIcon.style.transform = 'rotate(0deg)';
+          setTimeout(() => {
+            servicesDropdown.classList.add('hidden');
+          }, 300);
+        }
+      }
+    });
+
+    // Intersection Observer for animations (optional enhancement)
+    if ('IntersectionObserver' in window) {
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -10px 0px'
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('animate-fade-in');
+          }
+        });
+      }, observerOptions);
+
+      // Observe elements that should animate in
+      document.querySelectorAll('.nav-link').forEach(link => {
+        observer.observe(link);
+      });
+    }
+
+    // Preload critical images for better performance
+    const criticalImages = ['/main-site/logo_homepage.webp'];
+    criticalImages.forEach(src => {
+      const link = document.createElement('link');
+      link.rel = 'preload';
+      link.as = 'image';
+      link.href = src;
+      document.head.appendChild(link);
+    });
   });
 </script>
-
-<style>
-  /* Add some custom CSS for enhanced animations */
-  #main-header {
-    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
-                background-color 0.3s ease,
-                box-shadow 0.3s ease;
-  }
-
-  /* Smooth gradient animation for hover effects */
-  @keyframes gradientShift {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-  }
-
-  .nav-link:hover {
-    background-size: 200% 200%;
-    animation: gradientShift 3s ease infinite;
-  }
-
-  /* Pulse effect for the logo on hover */
-  @keyframes logoPulse {
-    0% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.4); }
-    70% { box-shadow: 0 0 0 10px rgba(59, 130, 246, 0); }
-    100% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0); }
-  }
-
-  /* Enhanced mobile menu button animation */
-  #mobileMenuToggle:active {
-    transform: scale(0.95);
-  }
-
-  /* Smooth scroll progress bar */
-  #scroll-progress {
-    background: linear-gradient(90deg, 
-      var(--brand-500, #3b82f6) 0%, 
-      var(--blue-500, #06b6d4) 50%, 
-      var(--brand-600, #2563eb) 100%);
-    background-size: 200% 100%;
-    animation: gradientShift 4s ease infinite;
-  }
-</style>

@@ -1,0 +1,219 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Space Invaders - Chiltern Computers</title>
+  <style>
+    body { margin: 0; background: #101828; color: #10b981; display: flex; justify-content: center; align-items: center; height: 100vh; overflow: hidden; }
+    canvas { background: #101828; display: block; margin: 0 auto; border: 2px solid #10b981; }
+    #bookRepairBtn {
+      display: none;
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 1rem;
+      background-color: #10b981;
+      color: #101828;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="gameCanvas" width="800" height="600"></canvas>
+  <button id="bookRepairBtn" onclick="window.location.href='/book'">Book Repair</button>
+  <script>
+    const canvas = document.getElementById('gameCanvas');
+    const ctx = canvas.getContext('2d');
+
+    let gameOver = false;
+
+    // Player
+    const player = { x: 370, y: 550, width: 60, height: 20, speed: 7 };
+
+    // Bullets
+    let bullet = { x: 0, y: 0, width: 5, height: 15, speed: 10, active: false };
+
+    // Enemies
+    const enemyRowCount = 5;
+    const enemyColumnCount = 11;
+    let enemies = [];
+    let enemyX = 50;
+    let enemyY = 50;
+    let enemyWidth = 40;
+    let enemyHeight = 30;
+    let enemyPadding = 15;
+    let enemyOffsetTop = 50;
+    let enemyOffsetLeft = 50;
+    let enemyDirection = 1; // 1 = right, -1 = left
+    let enemySpeed = 1;
+
+    // Score
+    let score = 0;
+
+    // Setup enemies
+    for(let c=0; c<enemyColumnCount; c++) {
+      enemies[c] = [];
+      for(let r=0; r<enemyRowCount; r++) {
+        enemies[c][r] = { x: 0, y: 0, status: 1 }; // status 1 = alive
+      }
+    }
+
+    // Draw player (repair van)
+    function drawPlayer() {
+      ctx.fillStyle = '#10b981';
+      ctx.fillRect(player.x, player.y, player.width, player.height);
+      // Add small window shape
+      ctx.fillStyle = '#074d3d';
+      ctx.fillRect(player.x + 15, player.y - 10, 30, 10);
+    }
+
+    // Draw bullet (laser tool)
+    function drawBullet() {
+      if(bullet.active) {
+        ctx.fillStyle = '#34d399';
+        ctx.fillRect(bullet.x, bullet.y, bullet.width, bullet.height);
+      }
+    }
+
+    // Draw enemies (malware bugs)
+    function drawEnemies() {
+      ctx.fillStyle = '#ef4444';
+      enemies.forEach((col, c) => {
+        col.forEach((enemy, r) => {
+          if(enemy.status === 1) {
+            let enemyXPos = (c*(enemyWidth + enemyPadding)) + enemyOffsetLeft;
+            let enemyYPos = (r*(enemyHeight + enemyPadding)) + enemyOffsetTop;
+            enemy.x = enemyXPos;
+            enemy.y = enemyYPos;
+            // Draw malware bug as a red rectangle with "M"
+            ctx.fillRect(enemyXPos, enemyYPos, enemyWidth, enemyHeight);
+            ctx.fillStyle = '#f87171';
+            ctx.font = '20px Arial';
+            ctx.fillText('M', enemyXPos + 12, enemyYPos + 22);
+            ctx.fillStyle = '#ef4444';
+          }
+        });
+      });
+    }
+
+    // Draw score
+    function drawScore() {
+      ctx.font = '20px Arial';
+      ctx.fillStyle = '#10b981';
+      ctx.fillText("Score: "+score, 10, 30);
+    }
+
+    // Move player
+    let rightPressed = false;
+    let leftPressed = false;
+    document.addEventListener("keydown", (e) => {
+      if(e.key === "Right" || e.key === "ArrowRight") rightPressed = true;
+      else if(e.key === "Left" || e.key === "ArrowLeft") leftPressed = true;
+      else if(e.key === " " || e.key === "Spacebar") fireBullet();
+    });
+    document.addEventListener("keyup", (e) => {
+      if(e.key === "Right" || e.key === "ArrowRight") rightPressed = false;
+      else if(e.key === "Left" || e.key === "ArrowLeft") leftPressed = false;
+    });
+
+    // Fire bullet
+    function fireBullet() {
+      if(!bullet.active) {
+        bullet.x = player.x + player.width/2 - bullet.width/2;
+        bullet.y = player.y;
+        bullet.active = true;
+      }
+    }
+
+    // Collision detection
+    function collisionDetection() {
+      for(let c=0; c<enemyColumnCount; c++) {
+        for(let r=0; r<enemyRowCount; r++) {
+          let enemy = enemies[c][r];
+          if(enemy.status === 1) {
+            if(bullet.active &&
+               bullet.x > enemy.x &&
+               bullet.x < enemy.x + enemyWidth &&
+               bullet.y > enemy.y &&
+               bullet.y < enemy.y + enemyHeight) {
+              enemy.status = 0;
+              bullet.active = false;
+              score += 10;
+              if(score === enemyRowCount*enemyColumnCount*10) {
+                endGame(true);
+              }
+            }
+          }
+        }
+      }
+    }
+
+    // End game function
+    function endGame(win) {
+      gameOver = true;
+      if(win) {
+        alert("All malware eliminated! Great job!");
+      } else {
+        alert("Your PC got infected. Need real repair? Book now!");
+      }
+      // Show Book Repair button
+      document.getElementById('bookRepairBtn').style.display = 'block';
+    }
+
+    // Update game frame
+    function update() {
+      if(gameOver) return;
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      drawPlayer();
+      drawEnemies();
+      drawBullet();
+      drawScore();
+
+      // Move player
+      if(rightPressed && player.x < canvas.width - player.width) player.x += player.speed;
+      if(leftPressed && player.x > 0) player.x -= player.speed;
+
+      // Move bullet
+      if(bullet.active) {
+        bullet.y -= bullet.speed;
+        if(bullet.y < 0) bullet.active = false;
+      }
+
+      // Move enemies
+      let edgeReached = false;
+      for(let c=0; c<enemyColumnCount; c++) {
+        for(let r=0; r<enemyRowCount; r++) {
+          let enemy = enemies[c][r];
+          if(enemy.status === 1) {
+            enemy.x += enemySpeed * enemyDirection;
+            if(enemy.x + enemyWidth > canvas.width || enemy.x < 0) {
+              edgeReached = true;
+            }
+          }
+        }
+      }
+      if(edgeReached) {
+        enemyDirection *= -1;
+        for(let c=0; c<enemyColumnCount; c++) {
+          for(let r=0; r<enemyRowCount; r++) {
+            enemies[c][r].y += enemyHeight;
+            // Check if enemies reached bottom
+            if(enemies[c][r].y + enemyHeight > player.y) {
+              endGame(false);
+            }
+          }
+        }
+      }
+
+      collisionDetection();
+
+      requestAnimationFrame(update);
+    }
+
+    update();
+  </script>
+</body>
+</html>

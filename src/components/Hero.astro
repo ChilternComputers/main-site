@@ -9,46 +9,138 @@ const ctaButtons = [
     text: "Call Now: 07971 331814",
     href: "tel:+447971331814",
     bgColor: "bg-blue-600 hover:bg-blue-700",
+    icon: "phone"
   },
   {
     text: "WhatsApp Us",
     href: "https://wa.me/447971331814",
     bgColor: "bg-green-500 hover:bg-green-600",
+    icon: "whatsapp"
   },
   {
     text: "Join Facebook Group",
     href: "https://www.facebook.com/groups/217286604958495",
     bgColor: "bg-blue-500 hover:bg-blue-600",
+    icon: "facebook"
   },
 ];
 ---
 
 <section    
-  class="relative bg-no-repeat py-12 px-4 text-white min-h-[340px] bg-gray-900"   
-  style="background-color: #1f2937; background-image: linear-gradient(to left, rgba(0, 0, 0, 0.6), rgba(0,0,0,0)), url('/mainpcpic.jpg'); background-size: 100%; background-position: center center; background-repeat: no-repeat;"
+  class="relative bg-no-repeat py-16 px-4 text-white min-h-[500px] bg-gray-900 overflow-hidden"   
+  style="background-color: #1f2937; background-image: linear-gradient(135deg, rgba(15, 23, 42, 0.85) 0%, rgba(30, 41, 59, 0.75) 50%, rgba(0, 0, 0, 0.6) 100%), url('/main-site/mainpcpic.jpg'); background-size: cover; background-position: center center; background-repeat: no-repeat; background-attachment: fixed;"
 >
-  <div class="relative z-10 max-w-6xl mx-auto flex flex-col items-center justify-center text-center gap-6 h-full min-h-[340px]">
-    <div class="w-full">
-      <h1 class="text-3xl md:text-4xl font-bold mb-6 drop-shadow-lg leading-tight">
-        {title}<br />
-        <span class="text-2xl md:text-3xl">{subtitle}</span>
-      </h1>
-      <p class="text-lg max-w-2xl mb-8 drop-shadow-md mx-auto leading-relaxed">
-        {description}
-      </p>
+  <!-- Animated Background Elements -->
+  <div class="absolute inset-0 opacity-20">
+    <div class="absolute top-20 left-10 w-32 h-32 bg-blue-500 rounded-full blur-3xl animate-float"></div>
+    <div class="absolute bottom-20 right-10 w-40 h-40 bg-indigo-500 rounded-full blur-3xl animate-float" style="animation-delay: 1.5s;"></div>
+    <div class="absolute top-1/2 left-1/4 w-24 h-24 bg-purple-500 rounded-full blur-2xl animate-pulse"></div>
+  </div>
 
-      <div class="flex flex-col sm:flex-row gap-4 justify-center">
-        {ctaButtons.map((btn) => (
+  <!-- Particle Effect Overlay -->
+  <div class="absolute inset-0 opacity-10">
+    <div class="absolute top-1/4 left-1/3 w-2 h-2 bg-blue-300 rounded-full animate-bounce" style="animation-delay: 0.5s;"></div>
+    <div class="absolute top-1/3 right-1/4 w-1 h-1 bg-indigo-300 rounded-full animate-bounce" style="animation-delay: 1s;"></div>
+    <div class="absolute bottom-1/3 left-1/5 w-1.5 h-1.5 bg-purple-300 rounded-full animate-bounce" style="animation-delay: 1.5s;"></div>
+    <div class="absolute bottom-1/4 right-1/3 w-2 h-2 bg-blue-400 rounded-full animate-bounce" style="animation-delay: 2s;"></div>
+  </div>
+
+  <div class="relative z-10 max-w-6xl mx-auto flex flex-col items-center justify-center text-center gap-8 h-full min-h-[500px]">
+    <!-- Trust Badge -->
+    <div class="glass-effect px-4 py-2 rounded-full animate-slide-down">
+      <span class="text-sm font-medium text-blue-200">⭐ Trusted by 1000+ customers • 20+ Years Experience</span>
+    </div>
+
+    <div class="w-full space-y-8">
+      <!-- Enhanced Main Title -->
+      <div class="relative">
+        <h1 class="text-5xl md:text-3xl font-black mb-4 leading-tight animate-slide-in">
+          <span class="gradient-text block mb-2">{title}</span>
+          <span class="text-3xl md:text-4xl text-blue-200 font-bold animate-slide-in" style="animation-delay: 0.3s;">
+            {subtitle}
+          </span>
+        </h1>
+        
+        <!-- Decorative Elements -->
+        <div class="flex justify-center mt-4 animate-slide-in" style="animation-delay: 0.6s;">
+          <div class="w-24 h-1 bg-gradient-to-r from-blue-400 via-blue-500 to-indigo-500 rounded-full animate-glow"></div>
+        </div>
+      </div>
+
+      <!-- Enhanced Description -->
+      <div class="relative animate-slide-in" style="animation-delay: 0.8s;">
+        <p class="text-xl md:text-2xl max-w-4xl mb-2 mx-auto leading-relaxed text-gray-100 font-light">
+          {description}
+        </p>
+        
+        <!-- Key Features -->
+        <div class="flex flex-wrap justify-center gap-6 mt-6 text-sm text-blue-200 animate-slide-in" style="animation-delay: 1s;">
+          <div class="flex items-center gap-2">
+            <div class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+            <span>Same-day Service</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <div class="w-2 h-2 bg-green-400 rounded-full animate-pulse" style="animation-delay: 0.5s;"></div>
+            <span>Free Diagnosis</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <div class="w-2 h-2 bg-green-400 rounded-full animate-pulse" style="animation-delay: 1s;"></div>
+            <span>No Fix, No Fee</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Enhanced CTA Buttons -->
+      <div class="flex flex-col sm:flex-row gap-4 justify-center animate-slide-up" style="animation-delay: 1.2s;">
+        {ctaButtons.map((btn, index) => (
           <a
             href={btn.href}
-            class={`px-6 py-3 rounded-lg font-semibold transition shadow-lg text-white ${btn.bgColor}`}
+            class={`group relative px-8 py-4 rounded-xl font-bold transition-all duration-300 shadow-2xl text-white border border-white/20 hover-scale hover-glow ${btn.bgColor} overflow-hidden`}
             target={btn.href.startsWith("http") ? "_blank" : "_self"}
             rel={btn.href.startsWith("http") ? "noopener noreferrer" : undefined}
+            style={`animation-delay: ${1.2 + (index * 0.2)}s;`}
           >
-            {btn.text}
+            <!-- Button Background Effect -->
+            <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
+            
+            <!-- Button Content -->
+            <div class="relative flex items-center justify-center gap-2">
+              {btn.icon === "phone" && (
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                </svg>
+              )}
+              {btn.icon === "whatsapp" && (
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.608"></path>
+                </svg>
+              )}
+              {btn.icon === "facebook" && (
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"></path>
+                </svg>
+              )}
+              <span>{btn.text}</span>
+            </div>
           </a>
+        ))}
+      </div>
+
+      <!-- Enhanced Service Highlights -->
+      <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto animate-slide-up" style="animation-delay: 1.5s;">
+        {[
+          { title: "Computer Repairs", desc: "Fast diagnosis & repair", icon: "🔧" },
+          { title: "Custom PCs", desc: "Gaming & business builds", icon: "🖥️" },
+          { title: "IT Support", desc: "Ongoing technical support", icon: "🛠️" }
+        ].map((service, index) => (
+          <div class="glass-effect p-6 rounded-2xl text-center hover-scale group" style={`animation-delay: ${1.5 + (index * 0.2)}s;`}>
+            <div class="text-3xl mb-3 group-hover:animate-bounce">{service.icon}</div>
+            <h3 class="font-bold text-lg mb-2 text-blue-100">{service.title}</h3>
+            <p class="text-sm text-blue-200">{service.desc}</p>
+          </div>
         ))}
       </div>
     </div>
   </div>
 </section>
+

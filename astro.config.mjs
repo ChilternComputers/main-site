@@ -1,17 +1,9 @@
-// @ts-check
 import { defineConfig } from 'astro/config';
-
-import tailwindcss from '@tailwindcss/vite';
+import tailwind from '@astrojs/tailwind';
 import sitemap from '@astrojs/sitemap';
 
-// https://astro.build/config
 export default defineConfig({
+  integrations: [tailwind(), sitemap()],
   site: 'https://ChilternComputers.github.io',
-  base: '/main-site',
-  output: 'static', // Explicitly set to static
-  trailingSlash: 'always',
-  vite: {
-    plugins: [tailwindcss()]
-  },
-  integrations: [sitemap()]
+  base: '/main-site/',
 });

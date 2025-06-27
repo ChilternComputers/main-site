@@ -5,17 +5,127 @@ import Hero from '../components/Hero.astro';
 
 <Layout>
   <Hero />
+   <style>
+        /* Custom animations and effects */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        @keyframes fade-in-up {
+            0% {
+                opacity: 0;
+                transform: translateY(1.5rem);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .float-animation { animation: float 5s ease-in-out infinite; }
+        .animate-fade-in-up {
+            animation: fade-in-up 0.6s ease forwards;
+        }
+    </style>
  <!-- Contact Info -->
 <section class="py-5 bg-gray-50 text-center">
   <div class="flex flex-col items-center justify-center mb-0 animate-fade-in-up">
-    <div class="flex items-center gap-4">
-      <img src="/logo_homepage.webp" alt="Chiltern Computers Logo" class="w-16 h-16 md:w-40 md:h-30 object-contain" />
-      <h2 class="text-3xl md:text-4xl font-extrabold text-gray-800">
-        Chiltern Computers - Get In Touch
-      </h2>
+            <div class="flex items-center gap-4">
+                <div class="float-animation">
+                    <img src="/main-site/logo_homepage.webp" alt="Chiltern Computers Logo" class="w-16 h-30 md:w-40 md:h-30 object-contain" />
+                </div>
+      <div class="relative max-w-4xl mx-auto">
+        <!-- Background decorative elements -->
+        <div class="absolute -top-4 -left-4 w-32 h-32 bg-gradient-to-br from-blue-400 to-purple-500 rounded-full opacity-10 animate-float"></div>
+        <div class="absolute -bottom-8 -right-8 w-24 h-24 bg-gradient-to-br from-indigo-400 to-blue-500 rounded-full opacity-10 animate-float" style="animation-delay: 1s;"></div>
+        
+        <!-- Main container with glass effect -->
+        <div class="relative glass-effect rounded-2xl p-8 shadow-xl">
+            <div class="text-center">
+                <!-- Main heading with gradient text and animations -->
+                <h2 class="text-4xl md:text-3xl font-black gradient-text animate-slide-in mb-2">
+                    Chiltern Computers
+                </h2>
+                
+                <!-- Subtitle with elegant styling -->
+                <div class="text-lg md:text-xl text-gray-600 font-medium mb-6 animate-slide-in" style="animation-delay: 0.3s;">
+                    Get In Touch
+                </div>
+                
+                <!-- Enhanced underline with glow effect -->
+                <div class="flex justify-center mb-4">
+                    <div class="w-24 h-1.5 bg-gradient-to-r from-blue-500 via-blue-600 to-indigo-600 rounded-full animate-expand animate-glow"></div>
+                </div>
+                
+                <!-- Decorative dots -->
+                <div class="flex justify-center space-x-2 animate-slide-in" style="animation-delay: 0.8s;">
+                    <div class="w-2 h-2 bg-blue-400 rounded-full animate-pulse"></div>
+                    <div class="w-2 h-2 bg-blue-500 rounded-full animate-pulse" style="animation-delay: 0.2s;"></div>
+                    <div class="w-2 h-2 bg-blue-600 rounded-full animate-pulse" style="animation-delay: 0.4s;"></div>
+                </div>
+            </div>
+            
+            <!-- Additional contact prompt with hover effect -->
+            <div class="mt-8 text-center animate-slide-in opacity-80 hover:opacity-100 transition-opacity duration-300" style="animation-delay: 1s;">
+                <p class="text-gray-700 font-medium">Ready to connect? We're here to help!</p>
+            </div>
+        </div>
+        
+        <!-- Subtle shadow elements -->
+        <div class="absolute inset-0 bg-gradient-to-r from-blue-500/5 to-indigo-500/5 rounded-2xl transform rotate-1 -z-10"></div>
+        <div class="absolute inset-0 bg-gradient-to-l from-purple-500/5 to-blue-500/5 rounded-2xl transform -rotate-1 -z-20"></div>
     </div>
-    <div class="w-24 h-1 bg-blue-600 mt-3"></div>
-  </div>
+<style>
+        @keyframes slideInFromLeft {
+            0% { transform: translateX(-100%); opacity: 0; }
+            100% { transform: translateX(0); opacity: 1; }
+        }
+        
+        @keyframes expandWidth {
+            0% { width: 0; }
+            100% { width: 6rem; }
+        }
+        
+        @keyframes glow {
+            0%, 100% { box-shadow: 0 0 5px rgba(59, 130, 246, 0.5); }
+            50% { box-shadow: 0 0 20px rgba(59, 130, 246, 0.8), 0 0 30px rgba(59, 130, 246, 0.6); }
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-3px); }
+        }
+        
+        .animate-slide-in {
+            animation: slideInFromLeft 0.8s ease-out;
+        }
+        
+        .animate-expand {
+            animation: expandWidth 1s ease-out 0.5s both;
+        }
+        
+        .animate-glow {
+            animation: glow 2s ease-in-out infinite;
+        }
+        
+        .animate-float {
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, #1e40af, #3b82f6, #60a5fa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+    </style>
 
   <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 text-gray-700">
     <div 
@@ -97,173 +207,167 @@ import Hero from '../components/Hero.astro';
 
 
     <!-- Services -->
-    <section class="py-10 bg-gray-50">
-      <div class="text-center mb-15">
-        <h2 class="text-3xl font-bold text-gray-800 mb-4">Computer Repair Services in Harold Hill & Romford</h2>
-        <div class="w-24 h-1 bg-blue-600 mx-auto mb-10"></div>
-        <p class="text-gray-600 max-w-3xl mx-auto">
-          From laptop repairs to custom gaming PC builds, we offer comprehensive IT support services across Essex. All work comes with our satisfaction guarantee.
-        </p>
+<section class="py-24 bg-gray-50">
+  <div class="text-center mb-20">
+    <h2 class="text-4xl md:text-3xl font-extrabold text-gray-800 animate-slide-up">Computer Repair Services in Harold Hill & Romford</h2>
+    <div class="w-24 h-1 bg-blue-600 mx-auto mt-4 mb-8 rounded animate-slide-up" style="animation-delay: 0.1s;"></div>
+    <p class="text-gray-600 max-w-3xl mx-auto animate-slide-up" style="animation-delay: 0.2s;">
+      From laptop repairs to custom gaming PC builds, we offer comprehensive IT support services across Havering. All work comes with our satisfaction guarantee.
+    </p>
+  </div>
+
+  <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3 px-6 max-w-7xl mx-auto">
+  {[
+    {
+      icon: "💻",
+      title: "Laptop & Desktop Repairs",
+      desc: "Professional repair services for all makes and models. Same-day repairs available for most issues.",
+    },
+    {
+      icon: "🛒",
+      title: "New & Refurbished Windows 11 PCs",
+      desc: "Quality pre-owned and new computers with Windows 11, perfect for home and business use.",
+    },
+    {
+      icon: "🕹️",
+      title: "Custom Built Gaming PCs",
+      desc: "Bespoke gaming rigs built to your specifications and budget. Latest graphics cards and processors.",
+    },
+    {
+      icon: "⚡",
+      title: "Fast SSD & RAM Upgrades",
+      desc: "Speed up your computer with SSD installations and memory upgrades. Instant performance boost.",
+    },
+    {
+      icon: "💾",
+      title: "Data Recovery Services",
+      desc: "Recover lost files from crashed hard drives, corrupted USB drives, and damaged storage devices.",
+    },
+    {
+      icon: "🦠",
+      title: "Virus & Malware Removal",
+      desc: "Complete system cleanup and protection setup. Remove stubborn viruses and prevent future infections.",
+    },
+    {
+      icon: "🖨️",
+      title: "Printer Setup & Support",
+      desc: "Printer installation, troubleshooting, and network setup. All major brands supported.",
+    },
+    {
+      icon: "🧹",
+      title: "System Cleanup & Optimization",
+      desc: "Remove junk files, optimize startup programs, and tune your system for peak performance.",
+    },
+    {
+      icon: "🔌",
+      title: "Home Network Setup",
+      desc: "Wi-Fi setup, router configuration, and network troubleshooting for reliable internet access.",
+    }
+  ].map((service, index) => (
+    <article
+      key={index}
+      class="glass-effect p-6 rounded-xl shadow-md enhanced-hover animate-slide-rotate-up"
+      style={`animation-delay: ${0.3 + index * 0.07}s;`}
+    >
+      <div class="flex items-start gap-4">
+        <span class="text-3xl">{service.icon}</span>
+        <div>
+          <h3 class="font-semibold text-lg text-gray-800 mb-2">{service.title}</h3>
+          <p class="text-gray-600 text-sm">{service.desc}</p>
+        </div>
       </div>
-      <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3 px-6 max-w-6xl mx-auto">
-        <article class="bg-white p-6 rounded-xl shadow-md">
-          <div class="flex items-start gap-4">
-            <span class="text-2xl">💻</span>
-            <div>
-              <h3 class="font-semibold text-lg mb-2">Laptop & Desktop Repairs</h3>
-              <p class="text-gray-600 text-sm">Professional repair services for all makes and models. Same-day repairs available for most issues.</p>
-            </div>
-          </div>
-        </article>
-        
-        <article class="bg-white p-6 rounded-xl shadow-md">
-          <div class="flex items-start gap-4">
-            <span class="text-2xl">🛒</span>
-            <div>
-              <h3 class="font-semibold text-lg mb-2">New & Refurbished Windows 11 PCs</h3>
-              <p class="text-gray-600 text-sm">Quality pre-owned and new computers with Windows 11, perfect for home and business use.</p>
-            </div>
-          </div>
-        </article>
-        
-        <article class="bg-white p-6 rounded-xl shadow-md">
-          <div class="flex items-start gap-4">
-            <span class="text-2xl">🕹️</span>
-            <div>
-              <h3 class="font-semibold text-lg mb-2">Custom Built Gaming PCs</h3>
-              <p class="text-gray-600 text-sm">Bespoke gaming rigs built to your specifications and budget. Latest graphics cards and processors.</p>
-            </div>
-          </div>
-        </article>
-        
-        <article class="bg-white p-6 rounded-xl shadow-md">
-          <div class="flex items-start gap-4">
-            <span class="text-2xl">⚡</span>
-            <div>
-              <h3 class="font-semibold text-lg mb-2">Fast SSD & RAM Upgrades</h3>
-              <p class="text-gray-600 text-sm">Speed up your computer with SSD installations and memory upgrades. Instant performance boost.</p>
-            </div>
-          </div>
-        </article>
-        
-        <article class="bg-white p-6 rounded-xl shadow-md">
-          <div class="flex items-start gap-4">
-            <span class="text-2xl">💾</span>
-            <div>
-              <h3 class="font-semibold text-lg mb-2">Data Recovery Services</h3>
-              <p class="text-gray-600 text-sm">Recover lost files from crashed hard drives, corrupted USB drives, and damaged storage devices.</p>
-            </div>
-          </div>
-        </article>
-        
-        <article class="bg-white p-6 rounded-xl shadow-md">
-          <div class="flex items-start gap-4">
-            <span class="text-2xl">🦠</span>
-            <div>
-              <h3 class="font-semibold text-lg mb-2">Virus & Malware Removal</h3>
-              <p class="text-gray-600 text-sm">Complete system cleanup and protection setup. Remove stubborn viruses and prevent future infections.</p>
-            </div>
-          </div>
-        </article>
-        
-        <article class="bg-white p-6 rounded-xl shadow-md">
-          <div class="flex items-start gap-4">
-            <span class="text-2xl">🖨️</span>
-            <div>
-              <h3 class="font-semibold text-lg mb-2">Printer Setup & Support</h3>
-              <p class="text-gray-600 text-sm">Printer installation, troubleshooting, and network setup. All major brands supported.</p>
-            </div>
-          </div>
-        </article>
-        
-        <article class="bg-white p-6 rounded-xl shadow-md">
-          <div class="flex items-start gap-4">
-            <span class="text-2xl">🧹</span>
-            <div>
-              <h3 class="font-semibold text-lg mb-2">System Cleanup & Optimization</h3>
-              <p class="text-gray-600 text-sm">Remove junk files, optimize startup programs, and tune your system for peak performance.</p>
-            </div>
-          </div>
-        </article>
-        
-        <article class="bg-white p-6 rounded-xl shadow-md">
-          <div class="flex items-start gap-4">
-            <span class="text-2xl">🔌</span>
-            <div>
-              <h3 class="font-semibold text-lg mb-2">Home Network Setup</h3>
-              <p class="text-gray-600 text-sm">Wi-Fi setup, router configuration, and network troubleshooting for reliable internet access.</p>
-            </div>
-          </div>
-        </article>
-      </div>
-    </section>
+    </article>
+  ))}
+</div>
+
+</section>
     <!-- Why Choose Us -->
-    <section class="py-12 bg-white">
-      <div class="text-center mb-10">
-        <h2 class="text-3xl font-bold text-gray-800 mb-4">Why Choose Chiltern Computers?</h2>
-		<div class="w-24 h-1 bg-blue-600 mx-auto mb-5"></div>
-      </div>
-      <div class="grid gap-6 md:grid-cols-3 px-6 max-w-4xl mx-auto">
-        <div class="text-center">
-          <div class="text-4xl mb-4">🏆</div>
-          <h3 class="font-semibold text-lg mb-2">20+ Years Experience</h3>
-          <p class="text-gray-600">Decades of expertise in computer repair and IT support across Essex.</p>
-        </div>
-        <div class="text-center">
-          <div class="text-4xl mb-4">⚡</div>
-          <h3 class="font-semibold text-lg mb-2">Fast Turnaround</h3>
-          <p class="text-gray-600">Most repairs completed same day or within 24 hours.</p>
-        </div>
-        <div class="text-center">
-          <div class="text-4xl mb-4">💷</div>
-          <h3 class="font-semibold text-lg mb-2">Fair Pricing</h3>
-          <p class="text-gray-600">Transparent, competitive pricing with no hidden costs.</p>
-        </div>
-      </div>
-    </section>
+<section class="py-24 bg-gradient-to-br from-white via-sky-50 to-blue-100">
+  <div class="text-center mb-16">
+    <h2 class="text-3xl font-extrabold gradient-text animate-slide-up">Why Choose Chiltern Computers?</h2>
+    
+        <div class="w-24 h-1 bg-blue-600 mx-auto mt-4 mb-6 rounded animate-slide-up" style="animation-delay: 0.1s;"></div>
+    <p class="text-gray-600 text-base animate-slide-up" style="animation-delay: 0.2s;">
+      Fast, honest, and experienced local computer repair & support.
+    </p>
+  </div>
 
-    <!-- Reviews -->
-    <section class="bg-gray-50 py-12">
-      <div class="text-center mb-10">
-        <h2 class="text-3xl font-bold text-gray-800 mb-4">Customer Reviews - Harold Hill IT Support</h2>
-		<div class="w-24 h-1 bg-blue-600 mx-auto mb-6"></div>
-        <p class="text-gray-600">See what our satisfied customers in Romford and Essex say about our service</p>
-      </div>
-      <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-4 px-6 max-w-6xl mx-auto">
-        <article class="bg-white p-4 rounded shadow">
-          <div class="text-yellow-500 mb-2">⭐⭐⭐⭐⭐</div>
-          <p class="italic">"Fast, friendly and reliable service. Fixed my laptop screen in Harold Hill same day. Highly recommend!"</p>
-          <p class="mt-2 font-semibold text-sm">- Sarah J., Romford</p>
-        </article>
-        <article class="bg-white p-4 rounded shadow">
-          <div class="text-yellow-500 mb-2">⭐⭐⭐⭐⭐</div>
-          <p class="italic">"Solved my laptop virus issues in no time. Great value for money and excellent customer service!"</p>
-          <p class="mt-2 font-semibold text-sm">- Tom H., Harold Wood</p>
-        </article>
-        <article class="bg-white p-4 rounded shadow">
-          <div class="text-yellow-500 mb-2">⭐⭐⭐⭐⭐</div>
-          <p class="italic">"Professional and very helpful. Built me an amazing gaming PC within budget. Thank you!"</p>
-          <p class="mt-2 font-semibold text-sm">- Rachel A., Hornchurch</p>
-        </article>
-        <article class="bg-white p-4 rounded shadow">
-          <div class="text-yellow-500 mb-2">⭐⭐⭐⭐⭐</div>
-          <p class="italic">"Wouldn't go anywhere else for IT support. Always helpful and reasonably priced."</p>
-          <p class="mt-2 font-semibold text-sm">- Mike D., Dagenham</p>
-        </article>
-      </div>
-    </section>
+  <div class="grid gap-10 md:grid-cols-3 px-6 max-w-6xl mx-auto">
+    <!-- Card 1 -->
+    <div class="glass-effect p-8 rounded-2xl text-center shadow-xl hover:shadow-2xl hover-scale hover-glow animate-slide-up" style="animation-delay: 0.3s;">
+      <div class="text-6xl mb-4">🏆</div>
+      <h3 class="text-2xl font-semibold text-gray-800 mb-2 animate-pulse-glow">20+ Years Experience</h3>
+      <p class="text-gray-600">Decades of trusted computer repair and IT support across Essex.</p>
+    </div>
 
-    <!-- Areas Covered -->
-<section class="bg-gradient-to-br from-gray-0 to-gray-50 pt-12 pb-0">
+    <!-- Card 2 -->
+    <div class="glass-effect p-8 rounded-2xl text-center shadow-xl hover:shadow-2xl hover-scale hover-glow animate-slide-up" style="animation-delay: 0.4s;">
+      <div class="text-6xl mb-4">⚡</div>
+      <h3 class="text-2xl font-semibold text-gray-800 mb-2 animate-pulse-glow">Fast Turnaround</h3>
+      <p class="text-gray-600">Same-day or 24-hour service on most repairs—lightning quick support.</p>
+    </div>
+
+    <!-- Card 3 -->
+    <div class="glass-effect p-8 rounded-2xl text-center shadow-xl hover:shadow-2xl hover-scale hover-glow animate-slide-up" style="animation-delay: 0.5s;">
+      <div class="text-6xl mb-4">💷</div>
+      <h3 class="text-2xl font-semibold text-gray-800 mb-2 animate-pulse-glow">Fair Pricing</h3>
+      <p class="text-gray-600">Straightforward pricing with no hidden surprises. You only pay what’s fair.</p>
+    </div>
+  </div>
+</section>
+
+
+   <!-- Reviews -->
+<section class="bg-gray-50 py-24">
+  <div class="text-center mb-16">
+    <h2 class="text-4xl md:text-3xl font-extrabold text-gray-800 animate-slide-up">Customer Reviews - Harold Hill IT Support</h2>
+    <div class="w-24 h-1 bg-blue-600 mx-auto mt-4 mb-6 rounded animate-slide-up" style="animation-delay: 0.1s;"></div>
+    <p class="text-gray-600 max-w-2xl mx-auto animate-slide-up" style="animation-delay: 0.2s;">
+      See what our satisfied customers in Romford and Essex say about our service.
+    </p>
+  </div>
+
+  <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-4 px-6 max-w-7xl mx-auto">
+    {[
+      {
+        quote: "Fast, friendly and reliable service. Fixed my laptop screen in Harold Hill same day. Highly recommend!",
+        name: "Sarah J., Romford",
+      },
+      {
+        quote: "Solved my laptop virus issues in no time. Great value for money and excellent customer service!",
+        name: "Tom H., Harold Wood",
+      },
+      {
+        quote: "Professional and very helpful. Built me an amazing gaming PC within budget. Thank you!",
+        name: "Rachel A., Hornchurch",
+      },
+      {
+        quote: "Wouldn't go anywhere else for IT support. Always helpful and reasonably priced.",
+        name: "Mike D., Dagenham",
+      }
+    ].map((review, index) => (
+      <article 
+        class="glass-effect p-6 rounded-xl shadow-md hover-lift animate-slide-up transition-all duration-300"
+        style={`animation-delay: ${0.3 + index * 0.1}s;`}
+      >
+        <div class="text-yellow-400 mb-3 text-lg">⭐⭐⭐⭐⭐</div>
+        <p class="italic text-gray-700 mb-3">"{review.quote}"</p>
+        <p class="mt-2 font-semibold text-sm text-gray-900">{review.name}</p>
+      </article>
+    ))}
+  </div>
+</section>
+
+
+   <!-- Areas Covered -->
+<section class="bg-gradient-to-br from-white via-gray-50 to-white pt-24 pb-16">
   <div class="container mx-auto px-4">
     <!-- Header -->
-    <div class="text-center mb-12">
-      <h2 class="text-3xl font-bold text-gray-800 mb-4">
-        Computer Repair Coverage Areas
-      </h2>
-      <div class="w-24 h-1 bg-blue-600 mx-auto mb-6"></div>
-      <p class="text-lg text-gray-700 max-w-3xl mx-auto leading-relaxed">
-        Based in Harold Hill, Chiltern Computers proudly provides computer repair and IT support services throughout Romford and the local area.
+    <div class="text-center mb-16">
+      <h2 class="text-3xl font-extrabold gradient-text animate-slide-up">Computer Repair Coverage Areas</h2>
+      <div class="w-24 h-1 bg-blue-600 mx-auto mt-4 mb-4 rounded animate-slide-up" style="animation-delay: 0.1s;"></div>
+      <p class="text-lg text-gray-700 max-w-3xl mx-auto leading-relaxed animate-slide-up" style="animation-delay: 0.2s;">
+        Based in Harold Hill, Chiltern Computers proudly provides computer repair and IT support services throughout Romford and surrounding areas.
       </p>
     </div>
 
@@ -280,19 +384,20 @@ import Hero from '../components/Hero.astro';
         { name: "Brentwood", desc: "CM13, CM14, CM15", map: "https://maps.google.com/?q=Brentwood+Essex" },
         { name: "Chadwell Heath", desc: "RM6", map: "https://maps.google.com/?q=Chadwell+Heath" },
         { name: "Hainault & Gidea Park", desc: "IG6, IG7, RM2", map: "https://maps.google.com/?q=Gidea+Park" }
-      ].map(area => (
+      ].map((area, index) => (
         <a 
-          href={area.map} 
-          target="_blank" 
+          href={area.map}
+          target="_blank"
           rel="noopener noreferrer"
-          class={`group relative bg-white p-6 rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 ease-in-out transform hover:-translate-y-1 border border-gray-100 ${area.featured ? 'ring-2 ring-blue-500 bg-blue-50' : 'hover:border-blue-200'}`}
+          class={`group relative p-6 rounded-2xl glass-effect shadow-md hover-lift hover-glow animate-slide-up transition duration-300 ease-in-out`}
+          style={`animation-delay: ${0.3 + index * 0.05}s; ${area.featured ? 'box-shadow: 0 0 0 2px #3B82F6;' : ''}`}
         >
           {area.featured && (
-            <div class="absolute -top-2 -right-2 bg-blue-600 text-white text-xs px-2 py-1 rounded-full font-semibold">
+            <div class="absolute -top-2 -right-2 bg-blue-600 text-white text-xs px-2 py-1 rounded-full font-semibold shadow-md animate-pulse-glow">
               Main Area
             </div>
           )}
-          
+
           <div class="text-center">
             <div class="mb-3">
               <svg class="w-8 h-8 mx-auto text-blue-600 group-hover:text-blue-700 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -300,35 +405,32 @@ import Hero from '../components/Hero.astro';
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
               </svg>
             </div>
-            
-            <h3 class="font-bold text-gray-800 group-hover:text-blue-700 transition-colors mb-2 text-sm leading-tight">
+
+            <h3 class="font-bold text-gray-800 group-hover:text-blue-700 transition-colors mb-1 text-sm leading-tight">
               {area.name}
             </h3>
-            
+
             <p class="text-gray-600 text-xs font-medium">
               {area.desc}
             </p>
           </div>
-          
-          <!-- Hover effect overlay -->
-          <div class="absolute inset-0 bg-blue-600 opacity-0 group-hover:opacity-5 rounded-xl transition-opacity duration-300"></div>
         </a>
       ))}
     </div>
 
     <!-- Call to Action -->
-    <div class="text-center mt-12">
-      <p class="text-gray-600 mb-4">
-        Don't see your area listed? We may still be able to help!
-      </p>
-     <a href="/contact" class="inline-flex items-center px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors duration-300">
-  <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 8h10M7 12h6m-2 8a9 9 0 100-18 9 9 0 000 18z" />
-  </svg>
-  Contact Us Today
-</a>
+<div class="text-center mt-16 animate-slide-up" style="animation-delay: 0.8s;">
+  <p class="text-gray-600 mb-5">
+    Don’t see your area listed? We may still be able to help.
+  </p>
+  <a href="tel:07971331814" class="inline-flex items-center px-6 py-3 bg-blue-600 text-white font-semibold rounded-xl hover:bg-blue-700 transition-all shadow-md hover:shadow-lg">
+    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 8h10M7 12h6m-2 8a9 9 0 100-18 9 9 0 000 18z" />
+    </svg>
+    Contact Us Today
+  </a>
+</div>
 
-
-    </div>
   </div>
 </section>
+
