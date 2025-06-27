@@ -4,6 +4,6 @@ import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
   integrations: [tailwind(), sitemap()],
-  site: 'https://ChilternComputers.github.io',
-  base: '/main-site/',
+  site: 'https://chilterncomputers.github.io',
+  base: '/main-site',
 });
