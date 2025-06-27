@@ -1,0 +1,5 @@
+name = "resend-contact-form"
+compatibility_date = "2024-06-28"
+
+[vars]
+RESEND_API_KEY = "re_Zy7DdsXz_DUnmcgDMebSvQzjhQEBb8FeGey_here"
