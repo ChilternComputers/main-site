@@ -43,9 +43,9 @@ const fullUrl = url || `${baseUrl}${pathname || ''}`;
 // Enhanced service areas within 3-mile radius
 const serviceAreas = [
   "Harold Hill", "Romford", "Hornchurch", "Upminster", "Dagenham", 
-  "Elm Park", "South Hornchurch", "Rainham", "Wennington", "Aveley",
+  "Elm Park", "Harold Wood", "Rainham", "Brentwood", "Aveley",
   "Collier Row", "Gidea Park", "Emerson Park", "Ardleigh Green",
-  "Rush Green", "Becontree", "Chadwell Heath", "Heath Park"
+  "Rush Green", "Hainault", "Chadwell Heath", "Heath Park"
 ];
 
 const primaryServiceArea = serviceArea || "Harold Hill";
@@ -87,9 +87,8 @@ const businessInfo = {
     longitude: 0.2329
   },
   openingHours: [
-    "Mo-Fr 09:00-21:",
-    "Sa 09:00-21:00",
-    "Su 09:00-21:00"
+    "Mo-Su 09:00-21:00"
+    
   ],
   serviceRadius: 4828,
   socialProfiles: [
@@ -104,7 +103,7 @@ const services = [
     description: "Professional desktop PC and laptop repair services for all makes and models including Windows, Mac, and Linux systems",
     category: "RepairService",
     offers: {
-      price: "From £35",
+      price: "From £40",
       priceCurrency: "GBP",
       availability: "InStock"
     }
@@ -314,24 +313,11 @@ const currentTime = new Date().toISOString();
   "openingHoursSpecification": [
     {
       "@type": "OpeningHoursSpecification",
-      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
       "opens": "09:00",
-      "closes": "17:30"
+      "closes": "21:00"
     },
-    {
-      "@type": "OpeningHoursSpecification",
-      "dayOfWeek": "Saturday",
-      "opens": "09:00", 
-      "closes": "16:00"
-    },
-    {
-      "@type": "OpeningHoursSpecification",
-      "dayOfWeek": "Sunday",
-      "opens": "00:00",
-      "closes": "00:00",
-      "validFrom": "2024-01-01",
-      "validThrough": "2024-12-31"
-    }
+    
   ],
   "priceRange": "££",
   "paymentAccepted": ["Cash", "Credit Card", "Debit Card", "Bank Transfer"],

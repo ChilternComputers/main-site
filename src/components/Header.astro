@@ -54,13 +54,13 @@ const { url } = Astro;
   <div class="max-w-7xl mx-auto px-4">
     <div class="flex justify-between items-center py-4 transition-all duration-300" id="header-content">
       <!-- Enhanced Logo and Brand -->
-      <a href="/main-site/" class="flex items-center gap-3 group relative" aria-label="Chiltern Computers Homepage">
+      <a href="/" class="flex items-center gap-3 group relative" aria-label="Chiltern Computers Homepage">
         <!-- Glow effect -->
         <div class="absolute -inset-2 bg-gradient-to-r from-brand-400/20 to-blue-500/20 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-sm"></div>
         
         <!-- Logo with loading optimization -->
         <img 
-          src="/main-site/logo_homepage.webp" 
+          src="/logo_homepage.webp" 
           alt="Chiltern Computers Logo" 
           class="h-10 w-auto transition-all duration-300 group-hover:scale-110 relative z-10"
           width="40"
@@ -109,9 +109,9 @@ const { url } = Astro;
       <!-- Enhanced Desktop Navigation -->
       <nav class="hidden md:flex items-center space-x-1" role="navigation" aria-label="Main navigation">
         <a 
-          href="/main-site/" 
+          href="/" 
           class="nav-link px-4 py-2 rounded-md hover:bg-brand-50 hover:text-brand-600 transition-all duration-300 font-medium relative overflow-hidden group"
-          aria-current={url.pathname === '/main-site/' ? 'page' : undefined}
+          aria-current={url.pathname === '/' ? 'page' : undefined}
         >
           <span class="relative z-10">Home</span>
           <div class="absolute inset-0 bg-gradient-to-r from-brand-500/10 to-blue-500/10 translate-x-full group-hover:translate-x-0 transition-transform duration-300"></div>
@@ -140,7 +140,7 @@ const { url } = Astro;
           >
             <div class="p-2">
               <a
-                href="/main-site/services/custom-pcs"
+                href="/services/custom-pcs"
                 class="block px-4 py-3 hover:bg-gradient-to-r hover:from-brand-50 hover:to-blue-50 text-gray-700 hover:text-brand-600 transition-all duration-300 rounded-lg relative group"
                 role="menuitem"
               >
@@ -157,7 +157,7 @@ const { url } = Astro;
               </a>
               
               <a
-                href="/main-site/services/repairs"
+                href="/services/repairs"
                 class="block px-4 py-3 hover:bg-gradient-to-r hover:from-brand-50 hover:to-blue-50 text-gray-700 hover:text-brand-600 transition-all duration-300 rounded-lg relative group"
                 role="menuitem"
               >
@@ -175,7 +175,7 @@ const { url } = Astro;
               </a>
               
               <a
-                href="/main-site/services/refurbished"
+                href="/services/refurbished"
                 class="block px-4 py-3 hover:bg-gradient-to-r hover:from-brand-50 hover:to-blue-50 text-gray-700 hover:text-brand-600 transition-all duration-300 rounded-lg relative group"
                 role="menuitem"
               >
@@ -197,7 +197,7 @@ const { url } = Astro;
        
 
         <a 
-          href="/main-site/about" 
+          href="/about" 
           class="nav-link px-4 py-2 rounded-md hover:bg-brand-50 hover:text-brand-600 transition-all duration-300 font-medium relative overflow-hidden group"
           aria-current={url.pathname === '/main-site/about' ? 'page' : undefined}
         >
@@ -206,9 +206,9 @@ const { url } = Astro;
         </a>
         
         <a 
-          href="/main-site/contact" 
+          href="/contact" 
           class="nav-link px-4 py-2 rounded-md hover:bg-brand-50 hover:text-brand-600 transition-all duration-300 font-medium relative overflow-hidden group border-2 border-transparent hover:border-brand-200"
-          aria-current={url.pathname === '/main-site/contact' ? 'page' : undefined}
+          aria-current={url.pathname === '/contact' ? 'page' : undefined}
         >
           <span class="relative z-10">Contact</span>
           <div class="absolute inset-0 bg-gradient-to-r from-brand-500/10 to-blue-500/10 translate-x-full group-hover:translate-x-0 transition-transform duration-300"></div>
@@ -234,7 +234,7 @@ const { url } = Astro;
       <!-- Mobile menu header -->
       <div class="flex items-center justify-between mb-8">
         <div class="flex items-center gap-2">
-          <img src="/main-site/logo_homepage.webp" alt="Chiltern Computers" class="h-8 w-auto" width="32" height="32" loading="lazy">
+          <img src="/logo_homepage.webp" alt="Chiltern Computers" class="h-8 w-auto" width="32" height="32" loading="lazy">
           <span class="font-bold text-brand-600">Menu</span>
         </div>
         <button id="closeMobileMenu" class="p-2 hover:bg-gray-100 rounded-lg transition-colors duration-200" aria-label="Close menu">
@@ -246,7 +246,7 @@ const { url } = Astro;
 
       <!-- Mobile menu items -->
       <div class="space-y-2">
-        <a href="/main-site/" class="block px-4 py-3 text-gray-700 hover:bg-brand-50 hover:text-brand-600 rounded-lg transition-all duration-200 font-medium">
+        <a href="/" class="block px-4 py-3 text-gray-700 hover:bg-brand-50 hover:text-brand-600 rounded-lg transition-all duration-200 font-medium">
           Home
         </a>
         
@@ -259,13 +259,13 @@ const { url } = Astro;
     </svg>
   </button>
   <div id="mobileServicesSubmenu" class="hidden ml-4 space-y-2">
-    <a href="/main-site/services/custom-pcs" class="block px-4 py-2 text-sm text-gray-600 hover:bg-brand-50 hover:text-brand-600 rounded-lg transition-all duration-200">
+    <a href="/services/custom-pcs" class="block px-4 py-2 text-sm text-gray-600 hover:bg-brand-50 hover:text-brand-600 rounded-lg transition-all duration-200">
       Custom PCs
     </a>
-    <a href="/main-site/services/repairs" class="block px-4 py-2 text-sm text-gray-600 hover:bg-brand-50 hover:text-brand-600 rounded-lg transition-all duration-200">
+    <a href="/services/repairs" class="block px-4 py-2 text-sm text-gray-600 hover:bg-brand-50 hover:text-brand-600 rounded-lg transition-all duration-200">
       Repairs & Upgrades
     </a>
-    <a href="/main-site/services/refurbished" class="block px-4 py-2 text-sm text-gray-600 hover:bg-brand-50 hover:text-brand-600 rounded-lg transition-all duration-200">
+    <a href="/services/refurbished" class="block px-4 py-2 text-sm text-gray-600 hover:bg-brand-50 hover:text-brand-600 rounded-lg transition-all duration-200">
       Refurbished PCs
     </a>
   </div>
@@ -280,10 +280,10 @@ const { url } = Astro;
     </svg>
   </button>
   <div id="mobileGamesSubmenu" class="hidden ml-4 space-y-2 bg-white dark:bg-gray-800 rounded-lg">
-    <a href="/main-site/games/space-invaders" class="block px-4 py-2 text-sm text-gray-800 dark:text-gray-200 hover:bg-brand-50 hover:text-brand-600 dark:hover:bg-gray-700 dark:hover:text-brand-400 rounded-lg transition-all duration-200">
+    <a href="/games/space-invaders" class="block px-4 py-2 text-sm text-gray-800 dark:text-gray-200 hover:bg-brand-50 hover:text-brand-600 dark:hover:bg-gray-700 dark:hover:text-brand-400 rounded-lg transition-all duration-200">
       Space Invaders
     </a>
-    <a href="/main-site/games/asteroids" class="block px-4 py-2 text-sm text-gray-800 dark:text-gray-200 hover:bg-brand-50 hover:text-brand-600 dark:hover:bg-gray-700 dark:hover:text-brand-400 rounded-lg transition-all duration-200">
+    <a href="/games/asteroids" class="block px-4 py-2 text-sm text-gray-800 dark:text-gray-200 hover:bg-brand-50 hover:text-brand-600 dark:hover:bg-gray-700 dark:hover:text-brand-400 rounded-lg transition-all duration-200">
       Asteroids
     </a>
   </div>
@@ -306,10 +306,10 @@ const { url } = Astro;
 </script>
 
         
-        <a href="/main-site/about" class="block px-4 py-3 text-gray-700 hover:bg-brand-50 hover:text-brand-600 rounded-lg transition-all duration-200 font-medium">
+        <a href="/about" class="block px-4 py-3 text-gray-700 hover:bg-brand-50 hover:text-brand-600 rounded-lg transition-all duration-200 font-medium">
           About
         </a>
-        <a href="/main-site/contact" class="block px-4 py-3 text-gray-700 hover:bg-brand-50 hover:text-brand-600 rounded-lg transition-all duration-200 font-medium">
+        <a href="/contact" class="block px-4 py-3 text-gray-700 hover:bg-brand-50 hover:text-brand-600 rounded-lg transition-all duration-200 font-medium">
           Contact
         </a>
       </div>
