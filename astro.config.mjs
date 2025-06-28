@@ -4,6 +4,6 @@ import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
   integrations: [tailwind(), sitemap()],
-  site: 'https://chilterncomputers.github.io',
-  base: '/main-site',
+  site: 'https://www.chilterncomputers.net', // Your actual custom domain
+  // Remove the base entirely for custom domains
 });
