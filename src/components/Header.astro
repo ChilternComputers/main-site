@@ -199,7 +199,7 @@ const { url } = Astro;
         <a 
           href="/about" 
           class="nav-link px-4 py-2 rounded-md hover:bg-brand-50 hover:text-brand-600 transition-all duration-300 font-medium relative overflow-hidden group"
-          aria-current={url.pathname === '/main-site/about' ? 'page' : undefined}
+          aria-current={url.pathname === '/about' ? 'page' : undefined}
         >
           <span class="relative z-10">About</span>
           <div class="absolute inset-0 bg-gradient-to-r from-brand-500/10 to-blue-500/10 translate-x-full group-hover:translate-x-0 transition-transform duration-300"></div>
@@ -776,7 +776,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Preload critical images for better performance
-    const criticalImages = ['/main-site/logo_homepage.webp'];
+    const criticalImages = ['/logo_homepage.webp'];
     criticalImages.forEach(src => {
       const link = document.createElement('link');
       link.rel = 'preload';
